@@ -46,5 +46,6 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+        <TextBlock x:Name="textBlock" FontSize="30" HorizontalAlignment="Left" Margin="93,25,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Board Layout" VerticalAlignment="Top" Height="40" Width="221"/>
     </Grid>
 </Page>
