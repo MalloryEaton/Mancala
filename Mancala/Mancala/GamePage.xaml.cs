@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -83,6 +85,8 @@ namespace Mancala
         Cup cup10 = new Cup();
         Cup cup11 = new Cup();
         Cup cup12 = new Cup();
+
+        List<Cup> cups = new List<Cup>();
         #endregion
 
         #region Mancala
@@ -101,18 +105,11 @@ namespace Mancala
                 InitializeMarbles();
 
                 PlaceMarblesOnBoard();
-
-                // do for the marble to move when clicked on.
-                SetStoryboardAnimation1(1, 500);
-
-                SetStoryboardAnimation2(1, 500);
-
-                storyboard.Children.Add(animation);
-                storyboard.Children.Add(animation2);
+                
             };
         }
 
-        private void SetStoryboardAnimation1(int marbleNumber, int toCoordinate)
+        private void SetStoryboardAnimation1(int marbleNumber, double toCoordinate)
         {
             animation.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
             animation.Duration = new TimeSpan(0, 0, 0, 0, 80);
@@ -267,7 +264,7 @@ namespace Mancala
             animation.To = toCoordinate;
         }
 
-        private void SetStoryboardAnimation2(int marbleNumber, int toCoordinate)
+        private void SetStoryboardAnimation2(int marbleNumber, double toCoordinate)
         {
             animation2.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
             animation2.Duration = new TimeSpan(0, 0, 0, 0, 80);
@@ -653,6 +650,22 @@ namespace Mancala
             PopulateCupCoordinateGrid(cup10.coordinates);
             PopulateCupCoordinateGrid(cup11.coordinates);
             PopulateCupCoordinateGrid(cup12.coordinates);
+
+            // add cups to list to enumerate through later.
+            cups.Add(cup0);
+            cups.Add(cup1);
+            cups.Add(cup2);
+            cups.Add(cup3);
+            cups.Add(cup4);
+            cups.Add(cup5);
+            cups.Add(cup7);
+            cups.Add(cup8);
+            cups.Add(cup9);
+            cups.Add(cup10);
+            cups.Add(cup11);
+            cups.Add(cup12);
+
+
         }
 
         private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
@@ -679,5 +692,35 @@ namespace Mancala
 
         }
         
+        private void Cup_Click(object sender, RoutedEventArgs e)
+        {
+            int startCup = -1;
+            int numOfMarbles = -1;
+
+            if(e.OriginalSource.Equals(Cup0))
+            {
+                numOfMarbles = cup0.cupNumber;
+                cup0.cupNumber = 0;
+                startCup = 0;
+            }
+
+            for (int i = startCup + 1; i < startCup + numOfMarbles; i++)
+            {
+                if (i == 6 || i == 13) { } //TODO: might loop around again, mancala to correct player...
+
+                // finds the coordinates of the first empty slot in the ith cup
+                double firstEmptySlotX = cups[i].coordinates[cups[i].cupNumber - 1].X;
+                double firstEmptySlotY = cups[i].coordinates[cups[i].cupNumber - 1].Y;
+
+                SetStoryboardAnimation1(1, firstEmptySlotX); //TODO: find the marble number......
+
+                SetStoryboardAnimation2(1, firstEmptySlotY);
+
+                storyboard.Children.Add(animation);
+                storyboard.Children.Add(animation2);
+            }
+            
+            
+        }
     }
 }
