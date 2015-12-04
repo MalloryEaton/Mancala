@@ -8,14 +8,20 @@ namespace Mancala
 {
     public class Cup
     {
-        Coordinate[] coordinates = new Coordinate[21];
+        public Coordinate[] coordinates = new Coordinate[21];
+        public int cupNumber;
         short marbleCount;
         Stack<Marble> marbles;
 
         public Cup()
         {
+            cupNumber = -1;
             marbleCount = 4;
             marbles = new Stack<Marble>();
+            for (int i = 0; i < 21; i++)
+            {
+                coordinates[i] = new Coordinate();
+            }
         }
     }
 }
