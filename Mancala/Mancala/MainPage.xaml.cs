@@ -63,7 +63,7 @@ namespace Mancala
             msgDialog.Commands.Add(cancelBtn);
 
             //Show message
-            msgDialog.ShowAsync();
+            var result = msgDialog.ShowAsync();
         }
 
         private void NewGameBtnClick(IUICommand command)
