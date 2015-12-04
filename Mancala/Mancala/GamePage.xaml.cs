@@ -115,7 +115,7 @@ namespace Mancala
         private void SetStoryboardAnimation1(int marbleNumber, int toCoordinate)
         {
             animation.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
-            animation.Duration = new TimeSpan(0, 0, 0, 0, 100);
+            animation.Duration = new TimeSpan(0, 0, 0, 0, 80);
             switch (marbleNumber)
             {
                 case 1:
@@ -270,7 +270,7 @@ namespace Mancala
         private void SetStoryboardAnimation2(int marbleNumber, int toCoordinate)
         {
             animation2.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
-            animation2.Duration = new TimeSpan(0, 0, 0, 0, 100);
+            animation2.Duration = new TimeSpan(0, 0, 0, 0, 80);
             switch (marbleNumber)
             {
                 case 1:
@@ -484,75 +484,75 @@ namespace Mancala
         private void PlaceMarblesOnBoard()
         {
             PlaceMarbleAtLocation(marble1, cup0.coordinates[0].X, cup0.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble2, cup0.coordinates[0].X, cup0.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble3, cup0.coordinates[0].X, cup0.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble4, cup0.coordinates[0].X, cup0.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble2, cup0.coordinates[1].X, cup0.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble3, cup0.coordinates[2].X, cup0.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble4, cup0.coordinates[3].X, cup0.coordinates[3].Y);
             cup0.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble5, cup1.coordinates[0].X, cup1.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble6, cup1.coordinates[0].X, cup1.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble7, cup1.coordinates[0].X, cup1.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble8, cup1.coordinates[0].X, cup1.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble6, cup1.coordinates[1].X, cup1.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble7, cup1.coordinates[2].X, cup1.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble8, cup1.coordinates[3].X, cup1.coordinates[3].Y);
             cup1.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble9, cup2.coordinates[0].X, cup2.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble10, cup2.coordinates[0].X, cup2.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble11, cup2.coordinates[0].X, cup2.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble12, cup2.coordinates[0].X, cup2.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble10, cup2.coordinates[1].X, cup2.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble11, cup2.coordinates[2].X, cup2.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble12, cup2.coordinates[3].X, cup2.coordinates[3].Y);
             cup2.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble13, cup3.coordinates[0].X, cup3.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble14, cup3.coordinates[0].X, cup3.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble15, cup3.coordinates[0].X, cup3.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble16, cup3.coordinates[0].X, cup3.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble14, cup3.coordinates[1].X, cup3.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble15, cup3.coordinates[2].X, cup3.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble16, cup3.coordinates[3].X, cup3.coordinates[3].Y);
             cup3.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble17, cup4.coordinates[0].X, cup4.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble18, cup4.coordinates[0].X, cup4.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble19, cup4.coordinates[0].X, cup4.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble20, cup4.coordinates[0].X, cup4.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble18, cup4.coordinates[1].X, cup4.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble19, cup4.coordinates[2].X, cup4.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble20, cup4.coordinates[3].X, cup4.coordinates[3].Y);
             cup4.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble21, cup5.coordinates[0].X, cup5.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble22, cup5.coordinates[0].X, cup5.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble23, cup5.coordinates[0].X, cup5.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble24, cup5.coordinates[0].X, cup5.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble22, cup5.coordinates[1].X, cup5.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble23, cup5.coordinates[2].X, cup5.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble24, cup5.coordinates[3].X, cup5.coordinates[3].Y);
             cup5.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble25, cup7.coordinates[0].X, cup7.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble26, cup7.coordinates[0].X, cup7.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble27, cup7.coordinates[0].X, cup7.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble28, cup7.coordinates[0].X, cup7.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble26, cup7.coordinates[1].X, cup7.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble27, cup7.coordinates[2].X, cup7.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble28, cup7.coordinates[3].X, cup7.coordinates[3].Y);
             cup7.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble29, cup8.coordinates[0].X, cup8.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble30, cup8.coordinates[0].X, cup8.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble31, cup8.coordinates[0].X, cup8.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble32, cup8.coordinates[0].X, cup8.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble30, cup8.coordinates[1].X, cup8.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble31, cup8.coordinates[2].X, cup8.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble32, cup8.coordinates[3].X, cup8.coordinates[3].Y);
             cup8.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble33, cup9.coordinates[0].X, cup9.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble34, cup9.coordinates[0].X, cup9.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble35, cup9.coordinates[0].X, cup9.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble36, cup9.coordinates[0].X, cup9.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble34, cup9.coordinates[1].X, cup9.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble35, cup9.coordinates[2].X, cup9.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble36, cup9.coordinates[3].X, cup9.coordinates[3].Y);
             cup9.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble37, cup10.coordinates[0].X, cup10.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble38, cup10.coordinates[0].X, cup10.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble39, cup10.coordinates[0].X, cup10.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble40, cup10.coordinates[0].X, cup10.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble38, cup10.coordinates[1].X, cup10.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble39, cup10.coordinates[2].X, cup10.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble40, cup10.coordinates[3].X, cup10.coordinates[3].Y);
             cup10.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble41, cup11.coordinates[0].X, cup11.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble42, cup11.coordinates[0].X, cup11.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble43, cup11.coordinates[0].X, cup11.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble44, cup11.coordinates[0].X, cup11.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble42, cup11.coordinates[1].X, cup11.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble43, cup11.coordinates[2].X, cup11.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble44, cup11.coordinates[3].X, cup11.coordinates[3].Y);
             cup11.cupNumber += 4;
 
             PlaceMarbleAtLocation(marble45, cup12.coordinates[0].X, cup12.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble46, cup12.coordinates[0].X, cup12.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble47, cup12.coordinates[0].X, cup12.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble48, cup12.coordinates[0].X, cup12.coordinates[3].Y);
+            PlaceMarbleAtLocation(marble46, cup12.coordinates[1].X, cup12.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble47, cup12.coordinates[2].X, cup12.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble48, cup12.coordinates[3].X, cup12.coordinates[3].Y);
             cup12.cupNumber += 4;
         }
 
@@ -613,32 +613,32 @@ namespace Mancala
             cup12.cupNumber = 12;
 
             // initialize X Coordinates of Cups
-            cup0.coordinates[20].X = Canvas.GetLeft(Cup0); 
-            cup1.coordinates[20].X = Canvas.GetLeft(Cup1);
-            cup2.coordinates[20].X = Canvas.GetLeft(Cup2);
-            cup3.coordinates[20].X = Canvas.GetLeft(Cup3);
-            cup4.coordinates[20].X = Canvas.GetLeft(Cup4);
-            cup5.coordinates[20].X = Canvas.GetLeft(Cup5);
-            cup7.coordinates[20].X = Canvas.GetLeft(Cup7);
-            cup8.coordinates[20].X = Canvas.GetLeft(Cup8);
-            cup9.coordinates[20].X = Canvas.GetLeft(Cup9);
-            cup10.coordinates[20].X = Canvas.GetLeft(Cup10);
-            cup11.coordinates[20].X = Canvas.GetLeft(Cup11);
-            cup12.coordinates[20].X = Canvas.GetLeft(Cup12);
+            cup0.coordinates[16].X = Canvas.GetLeft(Cup0); 
+            cup1.coordinates[16].X = Canvas.GetLeft(Cup1);
+            cup2.coordinates[16].X = Canvas.GetLeft(Cup2);
+            cup3.coordinates[16].X = Canvas.GetLeft(Cup3);
+            cup4.coordinates[16].X = Canvas.GetLeft(Cup4);
+            cup5.coordinates[16].X = Canvas.GetLeft(Cup5);
+            cup7.coordinates[16].X = Canvas.GetLeft(Cup7);
+            cup8.coordinates[16].X = Canvas.GetLeft(Cup8);
+            cup9.coordinates[16].X = Canvas.GetLeft(Cup9);
+            cup10.coordinates[16].X = Canvas.GetLeft(Cup10);
+            cup11.coordinates[16].X = Canvas.GetLeft(Cup11);
+            cup12.coordinates[16].X = Canvas.GetLeft(Cup12);
 
             // initialize Y Coordinates of Cups
-            cup0.coordinates[20].Y = Canvas.GetTop(Cup0);
-            cup1.coordinates[20].Y = Canvas.GetTop(Cup1);
-            cup2.coordinates[20].Y = Canvas.GetTop(Cup2);
-            cup3.coordinates[20].Y = Canvas.GetTop(Cup3);
-            cup4.coordinates[20].Y = Canvas.GetTop(Cup4);
-            cup5.coordinates[20].Y = Canvas.GetTop(Cup5);
-            cup7.coordinates[20].Y = Canvas.GetTop(Cup7);
-            cup8.coordinates[20].Y = Canvas.GetTop(Cup8);
-            cup9.coordinates[20].Y = Canvas.GetTop(Cup9);
-            cup10.coordinates[20].Y = Canvas.GetTop(Cup10);
-            cup11.coordinates[20].Y = Canvas.GetTop(Cup11);
-            cup12.coordinates[20].Y = Canvas.GetTop(Cup12);
+            cup0.coordinates[16].Y = Canvas.GetTop(Cup0);
+            cup1.coordinates[16].Y = Canvas.GetTop(Cup1);
+            cup2.coordinates[16].Y = Canvas.GetTop(Cup2);
+            cup3.coordinates[16].Y = Canvas.GetTop(Cup3);
+            cup4.coordinates[16].Y = Canvas.GetTop(Cup4);
+            cup5.coordinates[16].Y = Canvas.GetTop(Cup5);
+            cup7.coordinates[16].Y = Canvas.GetTop(Cup7);
+            cup8.coordinates[16].Y = Canvas.GetTop(Cup8);
+            cup9.coordinates[16].Y = Canvas.GetTop(Cup9);
+            cup10.coordinates[16].Y = Canvas.GetTop(Cup10);
+            cup11.coordinates[16].Y = Canvas.GetTop(Cup11);
+            cup12.coordinates[16].Y = Canvas.GetTop(Cup12);
 
             // initialize the rest of the Coordinates of Cups
             PopulateCupCoordinateGrid(cup0.coordinates);
@@ -657,21 +657,24 @@ namespace Mancala
 
         private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
         {
-            double currentLeft = coordinates[20].X;
-            double currentTop = coordinates[20].Y;
+            coordinates[19].X = coordinates[16].X + 75;
+            coordinates[19].Y = coordinates[16].Y;
+            
+            double currentLeft = coordinates[19].X;
+            double currentTop = coordinates[19].Y;
             // 5 rows, 4 columns, 20 possible items
-            for (int i = 20; i >= 0; i--)
+            for (int i = 19; i >= 0; i--)
             {
-                // move to the next row
-                if (i % 4 == 0 && i != 20)
-                {
-                    currentLeft += 25;
-                    currentTop = coordinates[20].Y;
-                }
                 coordinates[i].X = currentLeft;
                 coordinates[i].Y = currentTop;
                 // move to the next column
-                currentTop += 24;
+                currentLeft -= 25;
+                // move to the next row
+                if (i % 4 == 0)
+                {
+                    currentTop += 24;
+                    currentLeft = coordinates[19].X;
+                }
             }
 
         }

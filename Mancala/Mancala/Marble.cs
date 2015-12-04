@@ -28,6 +28,7 @@ namespace Mancala
             brushArray[4] = new SolidColorBrush(Colors.MediumOrchid);
             Random _rand = new Random();
             ellipse.Fill = brushArray[_rand.Next(5)];
+            ellipse.Stroke = new SolidColorBrush(Colors.Black);
         }
     }
 
