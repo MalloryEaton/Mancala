@@ -7,9 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="InstructionsButton" Content="Instructions" HorizontalAlignment="Stretch" Margin="847,539,259,0" VerticalAlignment="Top" Height="80" Click="InstructionsButton_Click"/>
-        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="306,546,0,0" VerticalAlignment="Top" Height="73" Width="193" Click="PlayButton_Click"/>
+    <Grid >
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/body.jpg"/>
+        </Grid.Background>
+        <Image Source="Assets/MancalaTitle.png" Margin="309,-57,-106,184"></Image>
+        <Button x:Name="InstructionsButton" Content="Instructions" HorizontalAlignment="Stretch" Margin="757,613,236,0" VerticalAlignment="Top" Height="80" Click="InstructionsButton_Click" FontSize="33.333"/>
+        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="757,456,0,0" VerticalAlignment="Top" Height="80" Width="287" Click="PlayButton_Click" FontSize="33.333"/>
 
     </Grid>
 </Page>
