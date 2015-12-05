@@ -22,7 +22,6 @@ namespace Mancala
         DoubleAnimation animation = new DoubleAnimation();
         DoubleAnimation animation2 = new DoubleAnimation();
         bool isPlayer1Turn = true;
-        bool storyboardCompleted = true;
 
         #region Marbles
         Marble marble1 = new Marble();
@@ -337,33 +336,36 @@ namespace Mancala
         private void InitializeMancala()
         {
             mancala1.cupNumber = 6;
-            mancala1.coordinates[0].X = Canvas.GetLeft(Cup6);
-            mancala1.coordinates[0].Y = Canvas.GetTop(Cup6);
-            PopulateMancalaCoordinateGrid(mancala1.coordinates);
+            mancala1.mancalaCoordinates[44].X = Canvas.GetLeft(Cup6);
+            mancala1.mancalaCoordinates[44].Y = Canvas.GetTop(Cup6);
+            PopulateMancalaCoordinateGrid(mancala1.mancalaCoordinates);
 
             mancala2.cupNumber = 13;
-            mancala2.coordinates[0].X = Canvas.GetLeft(Cup13);
-            mancala2.coordinates[0].Y = Canvas.GetTop(Cup13);
-            PopulateMancalaCoordinateGrid(mancala2.coordinates);
+            mancala2.mancalaCoordinates[44].X = Canvas.GetLeft(Cup13);
+            mancala2.mancalaCoordinates[44].Y = Canvas.GetTop(Cup13);
+            PopulateMancalaCoordinateGrid(mancala2.mancalaCoordinates);
         }
 
         private void PopulateMancalaCoordinateGrid(Coordinate[] coordinates)
         {
-            double currentTop = coordinates[0].X;
-            double currentLeft = coordinates[0].Y;
+            coordinates[47].X = coordinates[44].X + 75;
+            coordinates[47].Y = coordinates[44].Y;
+
+            double currentLeft = coordinates[47].X;
+            double currentTop = coordinates[47].Y;
             // 12 rows, 4 columns, 48 possible items
-            for (int i = 1; i < 49; i++)
+            for (int i = 47; i >= 0; i--)
             {
+                coordinates[i].X = currentLeft;
+                coordinates[i].Y = currentTop;
+                // move to the next column
+                currentLeft -= 25;
                 // move to the next row
                 if (i % 4 == 0)
                 {
-                    currentTop += 25;
-                    currentLeft = coordinates[0].Y;
+                    currentTop += 24;
+                    currentLeft = coordinates[47].X;
                 }
-                coordinates[i].X = currentTop;
-                coordinates[i].Y = currentLeft;
-                // move to the next column
-                currentLeft += 25;
             }
         }
 
@@ -463,7 +465,6 @@ namespace Mancala
                     currentLeft = coordinates[19].X;
                 }
             }
-
         }
         #endregion
 
@@ -780,9 +781,7 @@ namespace Mancala
             animation2.From = fromCoordinate;
             animation2.FillBehavior = FillBehavior.HoldEnd;
         }
-
-        //private async void AnimateMarbles(Marble marbleToMove, double firstEmptySlotX, double firstEmptySlotY, double fromX, double fromY)
-        //{
+        
         private void AnimateMarbles(Queue<AnimationInformation> queue)
         {
             AnimationInformation ani = new AnimationInformation();
@@ -790,7 +789,6 @@ namespace Mancala
             EventHandler<object> completed = null;
             completed += (s, ev) =>
             {
-                storyboardCompleted = true;
                 storyboard.Completed -= completed;
                 storyboard.Stop();
                 storyboard.Children.Clear();
@@ -824,13 +822,76 @@ namespace Mancala
             storyboard.Begin();
         }
 
-        private void Cup_Click(object sender, RoutedEventArgs e)
+        private void moveMarblesLogic(Cup startCup)
         {
             Marble marbleToMove;
-            Cup startCup = null;
             int numOfMarbles = -1;
             int numberOfMarblesToBeMoved = 0;
             Queue<AnimationInformation> stuffToAnimate = new Queue<AnimationInformation>();
+            if (startCup.marbleCount != 0)
+            {
+                numOfMarbles = numberOfMarblesToBeMoved = startCup.marbleCount;
+
+                marbleToMove = startCup.marbles.Pop();
+
+                int i = startCup.cupNumber + 1;
+
+                while (numberOfMarblesToBeMoved != 0)
+                {
+                    if (i != startCup.cupNumber + 1) //skip this the first time through
+                    {
+                        marbleToMove = startCup.marbles.Pop();
+                    }
+
+                    if (i == 6 && !isPlayer1Turn)
+                    {
+                        i++;
+                    }
+                    if (i == 13 && isPlayer1Turn)
+                    {
+                        i++;
+                    }
+
+                    if (i > 13)
+                    {
+                        i = 0;
+                    }
+                    double firstEmptySlotX = 0;
+                    double firstEmptySlotY = 0;
+                    // finds the coordinates of the first empty slot in the ith cup
+                    if (i == 6 || i == 13)
+                    {
+                        Mancala m = (Mancala)cups[i];
+                        firstEmptySlotX = m.mancalaCoordinates[cups[i].marbleCount].X;
+                        firstEmptySlotY = m.mancalaCoordinates[cups[i].marbleCount].Y;
+                    }
+                    else
+                    {
+                        firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
+                        firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
+                    }
+
+
+                    cups[i].marbles.Push(marbleToMove);
+                    numberOfMarblesToBeMoved--;
+                    startCup.marbleCount--;
+                    cups[i].marbleCount++;
+                    i++;
+
+                    stuffToAnimate.Enqueue(new AnimationInformation(marbleToMove, firstEmptySlotX, firstEmptySlotY,
+                        startCup.coordinates[startCup.marbleCount].X, startCup.coordinates[startCup.marbleCount].Y));
+                }
+                AnimateMarbles(stuffToAnimate);
+            }
+        }
+
+        private void Cup_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Cup startCup = null;
+            int endCupNumber;
+            bool isFreeTurn = false;
+            bool isCapture = false;
 
             #region Start Cup Initialization
             if (e.OriginalSource.Equals(Cup0Button))
@@ -883,126 +944,94 @@ namespace Mancala
             }
             #endregion
 
-            if (startCup.marbleCount != 0)
+            if (startCup.marbleCount > 0)
             {
-                numOfMarbles = numberOfMarblesToBeMoved = startCup.marbleCount;
-
-                marbleToMove = startCup.marbles.Pop();
-
-                int i = startCup.cupNumber + 1;
-
-                while(numberOfMarblesToBeMoved != 0)
+                endCupNumber = startCup.cupNumber + startCup.marbleCount;
+                
+                if (isPlayer1Turn && startCup.cupNumber >= 0 && startCup.cupNumber <= 5)
                 {
-                    // finds the coordinates of the first empty slot in the ith cup
-                    double firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
-                    double firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
-
-                    if (i != startCup.cupNumber + 1) //skip this the first time through
+                    moveMarblesLogic(startCup);
+                    if (endCupNumber != 6)
                     {
-                        marbleToMove = startCup.marbles.Pop();
+                        // switch turns
+                        isPlayer1Turn = !isPlayer1Turn;
+                    }
+                    else
+                    {
+                        isFreeTurn = true;
                     }
 
-                    if (i == 6 && !isPlayer1Turn)
+                }
+                else if (!isPlayer1Turn && startCup.cupNumber >= 7 && startCup.cupNumber <= 12)
+                {
+                    moveMarblesLogic(startCup);
+                    if (endCupNumber != 13)
                     {
-                        i++;
+                        // switch turns
+                        isPlayer1Turn = !isPlayer1Turn;
                     }
-                    if(i == 13 && isPlayer1Turn)
+                    else
                     {
-                        i++;
+                        isFreeTurn = true;
                     }
-
-                    if(i > 13)
+                }
+                else
+                {
+                    // invalid move
+                }
+                
+                if (isPlayer1Turn )
+                {
+                    if (isCapture)
                     {
-                        i = 0;
+                        playerTurntxtbx.Text = "Player One Capture";
+                        isCapture = false;
                     }
-
-                    cups[i].marbles.Push(marbleToMove);
-                    numberOfMarblesToBeMoved--;
-                    startCup.marbleCount--;
-                    cups[i].marbleCount++;
-                    i++;
-
-
-                    stuffToAnimate.Enqueue(new AnimationInformation(marbleToMove, firstEmptySlotX, firstEmptySlotY, 
-                        startCup.coordinates[startCup.marbleCount].X, startCup.coordinates[startCup.marbleCount].Y));
+                    if (isFreeTurn)
+                    {
+                        playerTurntxtbx.Text = "Player One Free";
+                        isFreeTurn = false;
+                    }
+                    else
+                        playerTurntxtbx.Text = "Player One Turn";
+                }
+                else
+                {
+                    if (isCapture)
+                    {
+                        playerTurntxtbx.Text = "Player Two Capture";
+                        isCapture = false;
+                    }
+                    if (isFreeTurn)
+                    {
+                        playerTurntxtbx.Text = "Player Two Free";
+                        isFreeTurn = false;
+                    }
+                    else
+                        playerTurntxtbx.Text = "Player Two Turn";
                 }
 
-                AnimateMarbles(stuffToAnimate);
+                if ((endCupNumber == 0 && cups[12].marbleCount > 0) ||
+                    (endCupNumber == 1 && cups[11].marbleCount > 0) ||
+                    (endCupNumber == 2 && cups[10].marbleCount > 0) ||
+                    (endCupNumber == 3 && cups[9].marbleCount > 0) ||
+                    (endCupNumber == 4 && cups[8].marbleCount > 0) ||
+                    (endCupNumber == 5 && cups[7].marbleCount > 0) ||
+                    (endCupNumber == 12 && cups[0].marbleCount > 0) ||
+                    (endCupNumber == 11 && cups[1].marbleCount > 0) ||
+                    (endCupNumber == 10 && cups[2].marbleCount > 0) ||
+                    (endCupNumber == 9 && cups[3].marbleCount > 0) ||
+                    (endCupNumber == 8 && cups[4].marbleCount > 0) ||
+                    (endCupNumber == 7 && cups[5].marbleCount > 0))
+                {
+                    // do the logic here
+                    isCapture = true;
+                    // TODO: call capture function!!!
+                    // change text again to next player turn
+                }
             }
 
-            //if (startCup.marbleCount != 0)
-            //{
-            //    marbleToMove = startCup.marbles.Pop();
-
-            //    int i = startCup.cupNumber + 1;
-
-            //    EventHandler<object> completed = null;
-            //    completed += (s, ev) =>
-            //    {
-            //        storyboardCompleted = true;
-            //        storyboard.Completed -= completed;
-            //        storyboard.Stop();
-            //        storyboard.Children.Clear();
-            //        i++;
-            //        Canvas.SetTop(marbleToMove.ellipse, cups[i].coordinates[cups[i].marbleCount].Y);
-            //        Canvas.SetLeft(marbleToMove.ellipse, cups[i].coordinates[cups[i].marbleCount].X);
-            //    };
-
-            //    EventHandler<object> completed1 = null;
-            //    completed1 += (s, ev) =>
-            //    {
-            //        storyboardCompleted = true;
-            //        storyboard1.Completed -= completed1;
-            //        storyboard1.Stop();
-            //        storyboard1.Children.Clear();
-            //        i++;
-            //    };
-
-            //    while (i <= startCup.cupNumber + numOfMarbles)
-            //    {
-            //        //if (i == 6 || i == 13) { } //TODO: might loop around again, mancala to correct player...
-
-            //        // finds the coordinates of the first empty slot in the ith cup
-            //        double firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
-            //        double firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
-
-            //        // move next marble to ith cup, and change numbers
-            //        if (i != startCup.cupNumber + 1) //skip this the first time through
-            //        {
-            //            marbleToMove = startCup.marbles.Pop();
-            //        }
-            //        cups[i].marbles.Push(marbleToMove);
-            //        cups[startCup.cupNumber].marbleCount--;
-            //        cups[i].marbleCount++;
-            //        i++;
-
-            //        if (storyboardCompleted)
-            //        {
-            //            // move with animation
-            //            SetStoryboardAnimation1(marbleToMove.MarbleNumber, firstEmptySlotX, startCup.coordinates[startCup.marbleCount].X);
-            //            SetStoryboardAnimation2(marbleToMove.MarbleNumber, firstEmptySlotY, startCup.coordinates[startCup.marbleCount].Y);
-
-            //            if (numOfMarbles == startCup.marbleCount + 1)
-            //            {
-            //                storyboard.Children.Add(animation);
-            //                storyboard.Children.Add(animation2);
-            //                storyboard.Completed += completed;
-            //                storyboard.Begin();
-            //            }
-            //            else if (numOfMarbles == startCup.marbleCount)
-            //            {
-            //                storyboard1.Children.Add(animation);
-            //                storyboard1.Children.Add(animation2);
-            //                storyboard1.Completed += completed1;
-            //                storyboard1.Begin();
-            //            }
-
-            //            storyboardCompleted = false;
-            //        }
-            //    }
-            //}
         }
-
     }
 
     struct AnimationInformation

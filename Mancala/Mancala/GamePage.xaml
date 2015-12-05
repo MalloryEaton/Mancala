@@ -250,6 +250,7 @@
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
             </Grid>
+            <TextBlock x:Name="playerTurntxtbx" Text="Player One" Canvas.Left="327" Canvas.Top="408" Height="67" Width="601" FontSize="40" TextAlignment="Center" Foreground="#FF020202" FontWeight="Bold"></TextBlock>
         </Canvas>
         <!--<TextBlock x:Name="Cup0MarbleCount" Margin="263,597,987,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
         <TextBlock x:Name="Cup1MarbleCount" Margin="418,597,832,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>

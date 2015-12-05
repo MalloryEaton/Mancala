@@ -8,7 +8,7 @@ namespace Mancala
 {
     public class Mancala: Cup
     {
-        public new Coordinate[] coordinates = new Coordinate[49];
+        public Coordinate[] mancalaCoordinates = new Coordinate[49];
         //public int mancalaNumber;
         //Stack<Marble> marbles;
         //public short marbleCount;
@@ -16,9 +16,9 @@ namespace Mancala
         {
             marbleCount = 0;
             marbles = new Stack<Marble>();
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 48; i++)
             {
-                coordinates[i] = new Coordinate();
+                mancalaCoordinates[i] = new Coordinate();
             }
         }
     }
