@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,6 +18,7 @@ namespace Mancala
     public sealed partial class GamePage : Page
     {
         Storyboard storyboard = new Storyboard();
+        Storyboard storyboard1 = new Storyboard();
         DoubleAnimation animation = new DoubleAnimation();
         DoubleAnimation animation2 = new DoubleAnimation();
 
@@ -100,16 +102,368 @@ namespace Mancala
             this.InitializeComponent();
             this.Loaded += (sender, e) =>
             {
-                InitializeCups();
-                InitializeMancala();
-                InitializeMarbles();
-
-                PlaceMarblesOnBoard();
-                
+                //have something for loading saved state
+                InitializeBoard();
             };
         }
 
-        private void SetStoryboardAnimation1(int marbleNumber, double toCoordinate)
+        #region Functions for Board Initialization
+        private void InitializeBoard()
+        {
+            InitializeCups();
+            InitializeMancala();
+            InitializeMarbles();
+            PlaceMarblesOnBoard();
+            PlaceMarblesInCup();
+
+            mancala1.marbleCount = 0;
+            mancala2.marbleCount = 0;
+
+            //Cup0MarbleCount.DataContext = cup0.marbleCount;
+            //Cup1MarbleCount.DataContext = cup1.marbleCount;
+            //Cup2MarbleCount.DataContext = cup2.marbleCount;
+            //Cup3MarbleCount.DataContext = cup3.marbleCount;
+            //Cup4MarbleCount.DataContext = cup4.marbleCount;
+            //Cup5MarbleCount.DataContext = cup5.marbleCount;
+            //Mancala1MarbleCount.DataContext = mancala1.marbleCount;
+            //Cup7MarbleCount.DataContext = cup7.marbleCount;
+            //Cup8MarbleCount.DataContext = cup8.marbleCount;
+            //Cup9MarbleCount.DataContext = cup9.marbleCount;
+            //Cup10MarbleCount.DataContext = cup10.marbleCount;
+            //Cup11MarbleCount.DataContext = cup11.marbleCount;
+            //Cup12MarbleCount.DataContext = cup12.marbleCount;
+            //Mancala2MarbleCount.DataContext = mancala2.marbleCount;
+        }
+
+        private void InitializeMarbles()
+        {
+            marble1.MarbleNumber = 1;
+            marble2.MarbleNumber = 2;
+            marble3.MarbleNumber = 3;
+            marble4.MarbleNumber = 4;
+            marble5.MarbleNumber = 5;
+            marble6.MarbleNumber = 6;
+            marble7.MarbleNumber = 7;
+            marble8.MarbleNumber = 8;
+            marble9.MarbleNumber = 9;
+            marble10.MarbleNumber = 10;
+            marble11.MarbleNumber = 11;
+            marble12.MarbleNumber = 12;
+            marble13.MarbleNumber = 13;
+            marble14.MarbleNumber = 14;
+            marble15.MarbleNumber = 15;
+            marble16.MarbleNumber = 16;
+            marble17.MarbleNumber = 17;
+            marble18.MarbleNumber = 18;
+            marble19.MarbleNumber = 19;
+            marble20.MarbleNumber = 20;
+            marble21.MarbleNumber = 21;
+            marble22.MarbleNumber = 22;
+            marble23.MarbleNumber = 23;
+            marble24.MarbleNumber = 24;
+            marble25.MarbleNumber = 25;
+            marble26.MarbleNumber = 26;
+            marble27.MarbleNumber = 27;
+            marble28.MarbleNumber = 28;
+            marble29.MarbleNumber = 29;
+            marble30.MarbleNumber = 30;
+            marble31.MarbleNumber = 31;
+            marble32.MarbleNumber = 32;
+            marble33.MarbleNumber = 33;
+            marble34.MarbleNumber = 34;
+            marble35.MarbleNumber = 35;
+            marble36.MarbleNumber = 36;
+            marble37.MarbleNumber = 37;
+            marble38.MarbleNumber = 38;
+            marble39.MarbleNumber = 39;
+            marble40.MarbleNumber = 40;
+            marble41.MarbleNumber = 41;
+            marble42.MarbleNumber = 42;
+            marble43.MarbleNumber = 43;
+            marble44.MarbleNumber = 44;
+            marble45.MarbleNumber = 45;
+            marble46.MarbleNumber = 46;
+            marble47.MarbleNumber = 47;
+            marble48.MarbleNumber = 48;
+        }
+
+        private void PlaceMarblesInCup()
+        {
+            cup0.marbles.Push(marble1);
+            cup0.marbles.Push(marble2);
+            cup0.marbles.Push(marble3);
+            cup0.marbles.Push(marble4);
+            cup0.marbleCount += 4;
+
+            cup1.marbles.Push(marble5);
+            cup1.marbles.Push(marble6);
+            cup1.marbles.Push(marble7);
+            cup1.marbles.Push(marble8);
+            cup1.marbleCount += 4;
+
+            cup2.marbles.Push(marble9);
+            cup2.marbles.Push(marble10);
+            cup2.marbles.Push(marble11);
+            cup2.marbles.Push(marble12);
+            cup2.marbleCount += 4;
+
+            cup3.marbles.Push(marble13);
+            cup3.marbles.Push(marble14);
+            cup3.marbles.Push(marble15);
+            cup3.marbles.Push(marble16);
+            cup3.marbleCount += 4;
+
+            cup4.marbles.Push(marble17);
+            cup4.marbles.Push(marble18);
+            cup4.marbles.Push(marble19);
+            cup4.marbles.Push(marble20);
+            cup4.marbleCount += 4;
+
+            cup5.marbles.Push(marble21);
+            cup5.marbles.Push(marble22);
+            cup5.marbles.Push(marble23);
+            cup5.marbles.Push(marble24);
+            cup5.marbleCount += 4;
+
+            cup7.marbles.Push(marble25);
+            cup7.marbles.Push(marble26);
+            cup7.marbles.Push(marble27);
+            cup7.marbles.Push(marble28);
+            cup7.marbleCount += 4;
+
+            cup8.marbles.Push(marble29);
+            cup8.marbles.Push(marble30);
+            cup8.marbles.Push(marble31);
+            cup8.marbles.Push(marble32);
+            cup8.marbleCount += 4;
+
+            cup9.marbles.Push(marble33);
+            cup9.marbles.Push(marble34);
+            cup9.marbles.Push(marble35);
+            cup9.marbles.Push(marble36);
+            cup9.marbleCount += 4;
+
+            cup10.marbles.Push(marble37);
+            cup10.marbles.Push(marble38);
+            cup10.marbles.Push(marble39);
+            cup10.marbles.Push(marble40);
+            cup10.marbleCount += 4;
+
+            cup11.marbles.Push(marble41);
+            cup11.marbles.Push(marble42);
+            cup11.marbles.Push(marble43);
+            cup11.marbles.Push(marble44);
+            cup11.marbleCount += 4;
+
+            cup12.marbles.Push(marble45);
+            cup12.marbles.Push(marble46);
+            cup12.marbles.Push(marble47);
+            cup12.marbles.Push(marble48);
+            cup12.marbleCount += 4;
+        }
+
+        private void PlaceMarblesOnBoard()
+        {
+            PlaceMarbleAtLocation(marble1, cup0.coordinates[0].X, cup0.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble2, cup0.coordinates[1].X, cup0.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble3, cup0.coordinates[2].X, cup0.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble4, cup0.coordinates[3].X, cup0.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble5, cup1.coordinates[0].X, cup1.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble6, cup1.coordinates[1].X, cup1.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble7, cup1.coordinates[2].X, cup1.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble8, cup1.coordinates[3].X, cup1.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble9, cup2.coordinates[0].X, cup2.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble10, cup2.coordinates[1].X, cup2.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble11, cup2.coordinates[2].X, cup2.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble12, cup2.coordinates[3].X, cup2.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble13, cup3.coordinates[0].X, cup3.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble14, cup3.coordinates[1].X, cup3.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble15, cup3.coordinates[2].X, cup3.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble16, cup3.coordinates[3].X, cup3.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble17, cup4.coordinates[0].X, cup4.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble18, cup4.coordinates[1].X, cup4.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble19, cup4.coordinates[2].X, cup4.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble20, cup4.coordinates[3].X, cup4.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble21, cup5.coordinates[0].X, cup5.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble22, cup5.coordinates[1].X, cup5.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble23, cup5.coordinates[2].X, cup5.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble24, cup5.coordinates[3].X, cup5.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble25, cup7.coordinates[0].X, cup7.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble26, cup7.coordinates[1].X, cup7.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble27, cup7.coordinates[2].X, cup7.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble28, cup7.coordinates[3].X, cup7.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble29, cup8.coordinates[0].X, cup8.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble30, cup8.coordinates[1].X, cup8.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble31, cup8.coordinates[2].X, cup8.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble32, cup8.coordinates[3].X, cup8.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble33, cup9.coordinates[0].X, cup9.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble34, cup9.coordinates[1].X, cup9.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble35, cup9.coordinates[2].X, cup9.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble36, cup9.coordinates[3].X, cup9.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble37, cup10.coordinates[0].X, cup10.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble38, cup10.coordinates[1].X, cup10.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble39, cup10.coordinates[2].X, cup10.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble40, cup10.coordinates[3].X, cup10.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble41, cup11.coordinates[0].X, cup11.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble42, cup11.coordinates[1].X, cup11.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble43, cup11.coordinates[2].X, cup11.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble44, cup11.coordinates[3].X, cup11.coordinates[3].Y);
+
+            PlaceMarbleAtLocation(marble45, cup12.coordinates[0].X, cup12.coordinates[0].Y);
+            PlaceMarbleAtLocation(marble46, cup12.coordinates[1].X, cup12.coordinates[1].Y);
+            PlaceMarbleAtLocation(marble47, cup12.coordinates[2].X, cup12.coordinates[2].Y);
+            PlaceMarbleAtLocation(marble48, cup12.coordinates[3].X, cup12.coordinates[3].Y);
+        }
+
+        private void PlaceMarbleAtLocation(Marble marble, double x, double y)
+        {
+            Canvas.SetTop(marble.ellipse, y);
+            Canvas.SetLeft(marble.ellipse, x);
+            mainCanvas.Children.Add(marble.ellipse);
+        }
+
+        private void InitializeMancala()
+        {
+            mancala1.mancalaNumber = 1;
+            mancala1.coordinates[0].X = Canvas.GetLeft(Cup6);
+            mancala1.coordinates[0].Y = Canvas.GetTop(Cup6);
+            PopulateMancalaCoordinateGrid(mancala1.coordinates);
+
+            mancala2.mancalaNumber = 2;
+            mancala2.coordinates[0].X = Canvas.GetLeft(Cup13);
+            mancala2.coordinates[0].Y = Canvas.GetTop(Cup13);
+            PopulateMancalaCoordinateGrid(mancala2.coordinates);
+        }
+
+        private void PopulateMancalaCoordinateGrid(Coordinate[] coordinates)
+        {
+            double currentTop = coordinates[0].X;
+            double currentLeft = coordinates[0].Y;
+            // 12 rows, 4 columns, 48 possible items
+            for (int i = 1; i < 49; i++)
+            {
+                // move to the next row
+                if (i % 4 == 0)
+                {
+                    currentTop += 25;
+                    currentLeft = coordinates[0].Y;
+                }
+                coordinates[i].X = currentTop;
+                coordinates[i].Y = currentLeft;
+                // move to the next column
+                currentLeft += 25;
+            }
+        }
+
+        private void InitializeCups()
+        {
+            // initilize cupNumber
+            cup0.cupNumber = 0;
+            cup1.cupNumber = 1;
+            cup2.cupNumber = 2;
+            cup3.cupNumber = 3;
+            cup4.cupNumber = 4;
+            cup5.cupNumber = 5;
+            cup7.cupNumber = 7;
+            cup8.cupNumber = 8;
+            cup9.cupNumber = 9;
+            cup10.cupNumber = 10;
+            cup11.cupNumber = 11;
+            cup12.cupNumber = 12;
+
+            // initialize X Coordinates of Cups
+            cup0.coordinates[16].X = Canvas.GetLeft(Cup0);
+            cup1.coordinates[16].X = Canvas.GetLeft(Cup1);
+            cup2.coordinates[16].X = Canvas.GetLeft(Cup2);
+            cup3.coordinates[16].X = Canvas.GetLeft(Cup3);
+            cup4.coordinates[16].X = Canvas.GetLeft(Cup4);
+            cup5.coordinates[16].X = Canvas.GetLeft(Cup5);
+            cup7.coordinates[16].X = Canvas.GetLeft(Cup7);
+            cup8.coordinates[16].X = Canvas.GetLeft(Cup8);
+            cup9.coordinates[16].X = Canvas.GetLeft(Cup9);
+            cup10.coordinates[16].X = Canvas.GetLeft(Cup10);
+            cup11.coordinates[16].X = Canvas.GetLeft(Cup11);
+            cup12.coordinates[16].X = Canvas.GetLeft(Cup12);
+
+            // initialize Y Coordinates of Cups
+            cup0.coordinates[16].Y = Canvas.GetTop(Cup0);
+            cup1.coordinates[16].Y = Canvas.GetTop(Cup1);
+            cup2.coordinates[16].Y = Canvas.GetTop(Cup2);
+            cup3.coordinates[16].Y = Canvas.GetTop(Cup3);
+            cup4.coordinates[16].Y = Canvas.GetTop(Cup4);
+            cup5.coordinates[16].Y = Canvas.GetTop(Cup5);
+            cup7.coordinates[16].Y = Canvas.GetTop(Cup7);
+            cup8.coordinates[16].Y = Canvas.GetTop(Cup8);
+            cup9.coordinates[16].Y = Canvas.GetTop(Cup9);
+            cup10.coordinates[16].Y = Canvas.GetTop(Cup10);
+            cup11.coordinates[16].Y = Canvas.GetTop(Cup11);
+            cup12.coordinates[16].Y = Canvas.GetTop(Cup12);
+
+            // initialize the rest of the Coordinates of Cups
+            PopulateCupCoordinateGrid(cup0.coordinates);
+            PopulateCupCoordinateGrid(cup1.coordinates);
+            PopulateCupCoordinateGrid(cup2.coordinates);
+            PopulateCupCoordinateGrid(cup3.coordinates);
+            PopulateCupCoordinateGrid(cup4.coordinates);
+            PopulateCupCoordinateGrid(cup5.coordinates);
+            PopulateCupCoordinateGrid(cup7.coordinates);
+            PopulateCupCoordinateGrid(cup8.coordinates);
+            PopulateCupCoordinateGrid(cup9.coordinates);
+            PopulateCupCoordinateGrid(cup10.coordinates);
+            PopulateCupCoordinateGrid(cup11.coordinates);
+            PopulateCupCoordinateGrid(cup12.coordinates);
+
+            // add cups to list to enumerate through later.
+            cups.Add(cup0);
+            cups.Add(cup1);
+            cups.Add(cup2);
+            cups.Add(cup3);
+            cups.Add(cup4);
+            cups.Add(cup5);
+            cups.Add(cup7);
+            cups.Add(cup8);
+            cups.Add(cup9);
+            cups.Add(cup10);
+            cups.Add(cup11);
+            cups.Add(cup12);
+        }
+
+        private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
+        {
+            coordinates[19].X = coordinates[16].X + 75;
+            coordinates[19].Y = coordinates[16].Y;
+
+            double currentLeft = coordinates[19].X;
+            double currentTop = coordinates[19].Y;
+            // 5 rows, 4 columns, 20 possible items
+            for (int i = 19; i >= 0; i--)
+            {
+                coordinates[i].X = currentLeft;
+                coordinates[i].Y = currentTop;
+                // move to the next column
+                currentLeft -= 25;
+                // move to the next row
+                if (i % 4 == 0)
+                {
+                    currentTop += 24;
+                    currentLeft = coordinates[19].X;
+                }
+            }
+
+        }
+        #endregion
+
+        private void SetStoryboardAnimation1(int marbleNumber, double toCoordinate, double fromCoordinate)
         {
             animation.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
             animation.Duration = new TimeSpan(0, 0, 0, 0, 80);
@@ -262,9 +616,11 @@ namespace Mancala
             }
             Storyboard.SetTargetProperty(animation, "(Canvas.Top)");
             animation.To = toCoordinate;
+            animation.From = fromCoordinate;
+            animation.FillBehavior = FillBehavior.HoldEnd;
         }
 
-        private void SetStoryboardAnimation2(int marbleNumber, double toCoordinate)
+        private void SetStoryboardAnimation2(int marbleNumber, double toCoordinate, double fromCoordinate)
         {
             animation2.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
             animation2.Duration = new TimeSpan(0, 0, 0, 0, 80);
@@ -415,312 +771,200 @@ namespace Mancala
                     Storyboard.SetTarget(animation2, marble48.ellipse);
                     break;
             }
-
             Storyboard.SetTargetProperty(animation2, "(Canvas.Left)");
-            animation.To = toCoordinate;
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            storyboard.Begin();
-        }
-
-        private void InitializeMarbles()
-        {
-            marble1.MarbleNumber = 1;
-            marble2.MarbleNumber = 2;
-            marble3.MarbleNumber = 3;
-            marble4.MarbleNumber = 4;
-            marble5.MarbleNumber = 5;
-            marble6.MarbleNumber = 6;
-            marble7.MarbleNumber = 7;
-            marble8.MarbleNumber = 8;
-            marble9.MarbleNumber = 9;
-            marble10.MarbleNumber = 10;
-            marble11.MarbleNumber = 11;
-            marble12.MarbleNumber = 12;
-            marble13.MarbleNumber = 13;
-            marble14.MarbleNumber = 14;
-            marble15.MarbleNumber = 15;
-            marble16.MarbleNumber = 16;
-            marble17.MarbleNumber = 17;
-            marble18.MarbleNumber = 18;
-            marble19.MarbleNumber = 19;
-            marble20.MarbleNumber = 20;
-            marble21.MarbleNumber = 21;
-            marble22.MarbleNumber = 22;
-            marble23.MarbleNumber = 23;
-            marble24.MarbleNumber = 24;
-            marble25.MarbleNumber = 25;
-            marble26.MarbleNumber = 26;
-            marble27.MarbleNumber = 27;
-            marble28.MarbleNumber = 28;
-            marble29.MarbleNumber = 29;
-            marble30.MarbleNumber = 30;
-            marble31.MarbleNumber = 31;
-            marble32.MarbleNumber = 32;
-            marble33.MarbleNumber = 33;
-            marble34.MarbleNumber = 34;
-            marble35.MarbleNumber = 35;
-            marble36.MarbleNumber = 36;
-            marble37.MarbleNumber = 37;
-            marble38.MarbleNumber = 38;
-            marble39.MarbleNumber = 39;
-            marble40.MarbleNumber = 40;
-            marble41.MarbleNumber = 41;
-            marble42.MarbleNumber = 42;
-            marble43.MarbleNumber = 43;
-            marble44.MarbleNumber = 44;
-            marble45.MarbleNumber = 45;
-            marble46.MarbleNumber = 46;
-            marble47.MarbleNumber = 47;
-            marble48.MarbleNumber = 48;
-
-        }
-
-        private void PlaceMarblesOnBoard()
-        {
-            PlaceMarbleAtLocation(marble1, cup0.coordinates[0].X, cup0.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble2, cup0.coordinates[1].X, cup0.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble3, cup0.coordinates[2].X, cup0.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble4, cup0.coordinates[3].X, cup0.coordinates[3].Y);
-            cup0.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble5, cup1.coordinates[0].X, cup1.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble6, cup1.coordinates[1].X, cup1.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble7, cup1.coordinates[2].X, cup1.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble8, cup1.coordinates[3].X, cup1.coordinates[3].Y);
-            cup1.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble9, cup2.coordinates[0].X, cup2.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble10, cup2.coordinates[1].X, cup2.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble11, cup2.coordinates[2].X, cup2.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble12, cup2.coordinates[3].X, cup2.coordinates[3].Y);
-            cup2.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble13, cup3.coordinates[0].X, cup3.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble14, cup3.coordinates[1].X, cup3.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble15, cup3.coordinates[2].X, cup3.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble16, cup3.coordinates[3].X, cup3.coordinates[3].Y);
-            cup3.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble17, cup4.coordinates[0].X, cup4.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble18, cup4.coordinates[1].X, cup4.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble19, cup4.coordinates[2].X, cup4.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble20, cup4.coordinates[3].X, cup4.coordinates[3].Y);
-            cup4.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble21, cup5.coordinates[0].X, cup5.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble22, cup5.coordinates[1].X, cup5.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble23, cup5.coordinates[2].X, cup5.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble24, cup5.coordinates[3].X, cup5.coordinates[3].Y);
-            cup5.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble25, cup7.coordinates[0].X, cup7.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble26, cup7.coordinates[1].X, cup7.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble27, cup7.coordinates[2].X, cup7.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble28, cup7.coordinates[3].X, cup7.coordinates[3].Y);
-            cup7.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble29, cup8.coordinates[0].X, cup8.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble30, cup8.coordinates[1].X, cup8.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble31, cup8.coordinates[2].X, cup8.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble32, cup8.coordinates[3].X, cup8.coordinates[3].Y);
-            cup8.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble33, cup9.coordinates[0].X, cup9.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble34, cup9.coordinates[1].X, cup9.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble35, cup9.coordinates[2].X, cup9.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble36, cup9.coordinates[3].X, cup9.coordinates[3].Y);
-            cup9.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble37, cup10.coordinates[0].X, cup10.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble38, cup10.coordinates[1].X, cup10.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble39, cup10.coordinates[2].X, cup10.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble40, cup10.coordinates[3].X, cup10.coordinates[3].Y);
-            cup10.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble41, cup11.coordinates[0].X, cup11.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble42, cup11.coordinates[1].X, cup11.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble43, cup11.coordinates[2].X, cup11.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble44, cup11.coordinates[3].X, cup11.coordinates[3].Y);
-            cup11.cupNumber += 4;
-
-            PlaceMarbleAtLocation(marble45, cup12.coordinates[0].X, cup12.coordinates[0].Y);
-            PlaceMarbleAtLocation(marble46, cup12.coordinates[1].X, cup12.coordinates[1].Y);
-            PlaceMarbleAtLocation(marble47, cup12.coordinates[2].X, cup12.coordinates[2].Y);
-            PlaceMarbleAtLocation(marble48, cup12.coordinates[3].X, cup12.coordinates[3].Y);
-            cup12.cupNumber += 4;
-        }
-
-        private void PlaceMarbleAtLocation(Marble marble, double x, double y)
-        {
-            Canvas.SetTop(marble.ellipse, y);
-            Canvas.SetLeft(marble.ellipse, x);
-            mainCanvas.Children.Add(marble.ellipse);
-        }
-
-        private void InitializeMancala()
-        {
-            mancala1.mancalaNumber = 1;
-            mancala1.coordinates[0].X = Canvas.GetLeft(Cup6);
-            mancala1.coordinates[0].Y = Canvas.GetTop(Cup6);
-            PopulateMancalaCoordinateGrid(mancala1.coordinates);
-
-            mancala2.mancalaNumber = 2;
-            mancala2.coordinates[0].X = Canvas.GetLeft(Cup13);
-            mancala2.coordinates[0].Y = Canvas.GetTop(Cup13);
-            PopulateMancalaCoordinateGrid(mancala2.coordinates);
+            animation2.To = toCoordinate;
+            animation2.From = fromCoordinate;
+            animation2.FillBehavior = FillBehavior.HoldEnd;
         }
         
-        private void PopulateMancalaCoordinateGrid(Coordinate[] coordinates)
+        private void AnimateMarble(Marble marble)
         {
-            double currentTop = coordinates[0].X;
-            double currentLeft = coordinates[0].Y;
-            // 12 rows, 4 columns, 48 possible items
-            for (int i = 1; i < 49; i++)
-            {   
-                // move to the next row
-                if (i % 4 == 0) 
-                {
-                    currentTop += 25;
-                    currentLeft = coordinates[0].Y;
-                }
-                coordinates[i].X = currentTop;
-                coordinates[i].Y = currentLeft;
-                // move to the next column
-                currentLeft += 25; 
-            }
-        }
-
-        private void InitializeCups()
-        {
-            // initilize cupNumber
-            cup0.cupNumber = 0;
-            cup1.cupNumber = 1;
-            cup2.cupNumber = 2;
-            cup3.cupNumber = 3;
-            cup4.cupNumber = 4;
-            cup5.cupNumber = 5;
-            cup7.cupNumber = 7;
-            cup8.cupNumber = 8;
-            cup9.cupNumber = 9;
-            cup10.cupNumber = 10;
-            cup11.cupNumber = 11;
-            cup12.cupNumber = 12;
-
-            // initialize X Coordinates of Cups
-            cup0.coordinates[16].X = Canvas.GetLeft(Cup0); 
-            cup1.coordinates[16].X = Canvas.GetLeft(Cup1);
-            cup2.coordinates[16].X = Canvas.GetLeft(Cup2);
-            cup3.coordinates[16].X = Canvas.GetLeft(Cup3);
-            cup4.coordinates[16].X = Canvas.GetLeft(Cup4);
-            cup5.coordinates[16].X = Canvas.GetLeft(Cup5);
-            cup7.coordinates[16].X = Canvas.GetLeft(Cup7);
-            cup8.coordinates[16].X = Canvas.GetLeft(Cup8);
-            cup9.coordinates[16].X = Canvas.GetLeft(Cup9);
-            cup10.coordinates[16].X = Canvas.GetLeft(Cup10);
-            cup11.coordinates[16].X = Canvas.GetLeft(Cup11);
-            cup12.coordinates[16].X = Canvas.GetLeft(Cup12);
-
-            // initialize Y Coordinates of Cups
-            cup0.coordinates[16].Y = Canvas.GetTop(Cup0);
-            cup1.coordinates[16].Y = Canvas.GetTop(Cup1);
-            cup2.coordinates[16].Y = Canvas.GetTop(Cup2);
-            cup3.coordinates[16].Y = Canvas.GetTop(Cup3);
-            cup4.coordinates[16].Y = Canvas.GetTop(Cup4);
-            cup5.coordinates[16].Y = Canvas.GetTop(Cup5);
-            cup7.coordinates[16].Y = Canvas.GetTop(Cup7);
-            cup8.coordinates[16].Y = Canvas.GetTop(Cup8);
-            cup9.coordinates[16].Y = Canvas.GetTop(Cup9);
-            cup10.coordinates[16].Y = Canvas.GetTop(Cup10);
-            cup11.coordinates[16].Y = Canvas.GetTop(Cup11);
-            cup12.coordinates[16].Y = Canvas.GetTop(Cup12);
-
-            // initialize the rest of the Coordinates of Cups
-            PopulateCupCoordinateGrid(cup0.coordinates);
-            PopulateCupCoordinateGrid(cup1.coordinates);
-            PopulateCupCoordinateGrid(cup2.coordinates);
-            PopulateCupCoordinateGrid(cup3.coordinates);
-            PopulateCupCoordinateGrid(cup4.coordinates);
-            PopulateCupCoordinateGrid(cup5.coordinates);
-            PopulateCupCoordinateGrid(cup7.coordinates);
-            PopulateCupCoordinateGrid(cup8.coordinates);
-            PopulateCupCoordinateGrid(cup9.coordinates);
-            PopulateCupCoordinateGrid(cup10.coordinates);
-            PopulateCupCoordinateGrid(cup11.coordinates);
-            PopulateCupCoordinateGrid(cup12.coordinates);
-
-            // add cups to list to enumerate through later.
-            cups.Add(cup0);
-            cups.Add(cup1);
-            cups.Add(cup2);
-            cups.Add(cup3);
-            cups.Add(cup4);
-            cups.Add(cup5);
-            cups.Add(cup7);
-            cups.Add(cup8);
-            cups.Add(cup9);
-            cups.Add(cup10);
-            cups.Add(cup11);
-            cups.Add(cup12);
-
 
         }
 
-        private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
-        {
-            coordinates[19].X = coordinates[16].X + 75;
-            coordinates[19].Y = coordinates[16].Y;
-            
-            double currentLeft = coordinates[19].X;
-            double currentTop = coordinates[19].Y;
-            // 5 rows, 4 columns, 20 possible items
-            for (int i = 19; i >= 0; i--)
-            {
-                coordinates[i].X = currentLeft;
-                coordinates[i].Y = currentTop;
-                // move to the next column
-                currentLeft -= 25;
-                // move to the next row
-                if (i % 4 == 0)
-                {
-                    currentTop += 24;
-                    currentLeft = coordinates[19].X;
-                }
-            }
-
-        }
-        
         private void Cup_Click(object sender, RoutedEventArgs e)
         {
-            int startCup = -1;
+            Marble marbleToMove;
+            Cup startCup = null;
             int numOfMarbles = -1;
+            bool storyboardCompleted = true;
 
-            if(e.OriginalSource.Equals(Cup0))
+            if(e.OriginalSource.Equals(Cup0Button))
             {
-                numOfMarbles = cup0.cupNumber;
+                numOfMarbles = cup0.marbleCount;
                 cup0.cupNumber = 0;
-                startCup = 0;
+                startCup = cup0;
             }
-
-            for (int i = startCup + 1; i < startCup + numOfMarbles; i++)
+            if (e.OriginalSource.Equals(Cup1Button))
             {
-                if (i == 6 || i == 13) { } //TODO: might loop around again, mancala to correct player...
-
-                // finds the coordinates of the first empty slot in the ith cup
-                double firstEmptySlotX = cups[i].coordinates[cups[i].cupNumber - 1].X;
-                double firstEmptySlotY = cups[i].coordinates[cups[i].cupNumber - 1].Y;
-
-                SetStoryboardAnimation1(1, firstEmptySlotX); //TODO: find the marble number......
-
-                SetStoryboardAnimation2(1, firstEmptySlotY);
-
-                storyboard.Children.Add(animation);
-                storyboard.Children.Add(animation2);
+                numOfMarbles = cup1.marbleCount;
+                cup1.cupNumber = 1;
+                startCup = cup1;
             }
-            
-            
+            if (e.OriginalSource.Equals(Cup2Button))
+            {
+                numOfMarbles = cup2.marbleCount;
+                cup2.cupNumber = 2;
+                startCup = cup2;
+            }
+            if (e.OriginalSource.Equals(Cup3Button))
+            {
+                numOfMarbles = cup3.marbleCount;
+                cup3.cupNumber = 3;
+                startCup = cup3;
+            }
+            if (e.OriginalSource.Equals(Cup4Button))
+            {
+                numOfMarbles = cup4.marbleCount;
+                cup4.cupNumber = 4;
+                startCup = cup4;
+            }
+            if (e.OriginalSource.Equals(Cup5Button))
+            {
+                numOfMarbles = cup5.marbleCount;
+                cup5.cupNumber = 5;
+                startCup = cup5;
+            }
+            if (e.OriginalSource.Equals(Cup7Button))
+            {
+                numOfMarbles = cup7.marbleCount;
+                cup7.cupNumber = 7;
+                startCup = cup7;
+            }
+            if (e.OriginalSource.Equals(Cup8Button))
+            {
+                numOfMarbles = cup8.marbleCount;
+                cup8.cupNumber = 8;
+                startCup = cup8;
+            }
+            if (e.OriginalSource.Equals(Cup9Button))
+            {
+                numOfMarbles = cup9.marbleCount;
+                cup9.cupNumber = 9;
+                startCup = cup9;
+            }
+            if (e.OriginalSource.Equals(Cup10Button))
+            {
+                numOfMarbles = cup10.marbleCount;
+                cup10.cupNumber = 10;
+                startCup = cup10;
+            }
+            if (e.OriginalSource.Equals(Cup11Button))
+            {
+                numOfMarbles = cup11.marbleCount;
+                cup11.cupNumber = 11;
+                startCup = cup11;
+            }
+            if (e.OriginalSource.Equals(Cup12Button))
+            {
+                numOfMarbles = cup12.marbleCount;
+                cup12.cupNumber = 12;
+                startCup = cup12;
+            }
+
+            if (startCup.marbleCount != 0)
+            {
+                marbleToMove = startCup.marbles.Pop();
+
+                int i = startCup.cupNumber + 1;
+
+                EventHandler<object> completed = null;
+                completed += (s, ev) =>
+                {
+                    storyboardCompleted = true;
+                    storyboard.Completed -= completed;
+                    storyboard.Stop();
+                    storyboard.Children.Clear();
+                    i++;
+                    Canvas.SetTop(marbleToMove.ellipse, cups[i].coordinates[cups[i].marbleCount].Y);
+                    Canvas.SetLeft(marbleToMove.ellipse, cups[i].coordinates[cups[i].marbleCount].X);
+                };
+
+                EventHandler<object> completed1 = null;
+                completed1 += (s, ev) =>
+                {
+                    storyboardCompleted = true;
+                    storyboard1.Completed -= completed1;
+                    storyboard1.Stop();
+                    storyboard1.Children.Clear();
+                    i++;
+                };
+
+                while (i <= startCup.cupNumber + numOfMarbles)
+                {
+                    //if (i == 6 || i == 13) { } //TODO: might loop around again, mancala to correct player...
+
+                    // finds the coordinates of the first empty slot in the ith cup
+                    double firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
+                    double firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
+
+                    // move next marble to ith cup, and change numbers
+                    if (i != startCup.cupNumber + 1) //skip this the first time through
+                    {
+                        marbleToMove = startCup.marbles.Pop();
+                    }
+                    cups[i].marbles.Push(marbleToMove);
+                    cups[startCup.cupNumber].marbleCount--;
+                    cups[i].marbleCount++;
+                    i++;
+
+                    //if (storyboardCompleted)
+                    //{
+                    //    // move with animation
+                    //    SetStoryboardAnimation1(marbleToMove.MarbleNumber, firstEmptySlotX, startCup.coordinates[startCup.marbleCount].X);
+                    //    SetStoryboardAnimation2(marbleToMove.MarbleNumber, firstEmptySlotY, startCup.coordinates[startCup.marbleCount].Y);
+
+                    //    if (numOfMarbles == startCup.marbleCount + 1)
+                    //    {
+                    //        storyboard.Children.Add(animation);
+                    //        storyboard.Children.Add(animation2);
+                    //        storyboard.Completed += completed;
+                    //        storyboard.Begin();
+                    //    }
+                    //    else if (numOfMarbles == startCup.marbleCount)
+                    //    {
+                    //        storyboard1.Children.Add(animation);
+                    //        storyboard1.Children.Add(animation2);
+                    //        storyboard1.Completed += completed1;
+                    //        storyboard1.Begin();
+                    //    }
+
+                    //    storyboardCompleted = false;
+                    //}
+                }
+            }
+
+            //for (int i = startCup.cupNumber + 1; i <= startCup.cupNumber + numOfMarbles; i++)
+            //{
+            //    //if (i == 6 || i == 13) { } //TODO: might loop around again, mancala to correct player...
+
+            //    // finds the coordinates of the first empty slot in the ith cup
+            //    double firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
+            //    double firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
+
+            //    // move next marble to ith cup, and change numbers
+            //    marbleToMove = startCup.marbles.Pop();
+            //    cups[i].marbles.Push(marbleToMove);
+            //    cups[startCup.cupNumber].marbleCount--;
+            //    cups[i].marbleCount++;
+
+            //    if(storyboardCompleted)
+            //    {
+            //        // move with animation
+            //        SetStoryboardAnimation1(marbleToMove.MarbleNumber, firstEmptySlotX, startCup.coordinates[startCup.marbleCount].X);
+            //        SetStoryboardAnimation2(marbleToMove.MarbleNumber, firstEmptySlotY, startCup.coordinates[startCup.marbleCount].Y);
+
+            //        storyboard.Children.Add(animation);
+            //        storyboard.Children.Add(animation2);
+            //        storyboard.Completed += completed;
+
+            //        storyboard.Begin();
+            //        storyboardCompleted = false;
+            //    }
+
+            //    //change this for loop into a while loop that will increment i after the animation is finished
+            //}
         }
+
     }
 }

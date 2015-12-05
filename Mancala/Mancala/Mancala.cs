@@ -11,7 +11,7 @@ namespace Mancala
         public Coordinate[] coordinates = new Coordinate[49];
         public int mancalaNumber;
         Stack<Marble> marbles;
-        short marbleCount;
+        public short marbleCount;
         public Mancala()
         {
             marbleCount = 0;

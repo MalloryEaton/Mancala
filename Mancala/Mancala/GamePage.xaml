@@ -12,21 +12,9 @@
             <ImageBrush Stretch="Fill" ImageSource="Assets/body.jpg"/>
         </Grid.Background>
         <Image x:Name="image" HorizontalAlignment="Left" Height="614" Margin="-76,124,-570,0" VerticalAlignment="Top" Width="1926" Source="Assets/mancalaBoard.png"/>
-        <Canvas x:Name="mainCanvas">
-            <Button x:Name="Cup0" Height="120" Width="99" Canvas.Left="227" Canvas.Top="466" Click="Cup_Click"/>
-            <Button x:Name="Cup1" Height="120" Width="99" Canvas.Left="377" Canvas.Top="466" Click="Cup_Click"/>
-            <Button x:Name="Cup2" Height="120" Width="99" Canvas.Left="518" Canvas.Top="466" Click="Cup_Click"/>
-            <Button x:Name="Cup3" Height="120" Width="99" Canvas.Left="669" Canvas.Top="466" Click="Cup_Click"/>
-            <Button x:Name="Cup4" Height="120" Width="99" Canvas.Left="815" Canvas.Top="462" Click="Cup_Click"/>
-            <Button x:Name="Cup5" Height="120" Width="99" Canvas.Left="963" Canvas.Top="464" Click="Cup_Click"/>
-            <Button x:Name="Cup7" Height="120" Width="99" Canvas.Left="966" Canvas.Top="278" Click="Cup_Click"/>
-            <Button x:Name="Cup8" Height="120" Width="99" Canvas.Left="818" Canvas.Top="279" Click="Cup_Click"/>
-            <Button x:Name="Cup9" Height="120" Width="99" Canvas.Left="672" Canvas.Top="279" Click="Cup_Click"/>
-            <Button x:Name="Cup10" Height="120" Width="99" Canvas.Left="521" Canvas.Top="278" Click="Cup_Click"/>
-            <Button x:Name="Cup11" Height="120" Width="99" Canvas.Left="379" Canvas.Top="278" Click="Cup_Click"/>
-            <Button x:Name="Cup12" Height="120" Width="99" Canvas.Left="230" Canvas.Top="278" Click="Cup_Click"/>
 
-            <!--<Grid x:Name="Cup0" Height="120" Width="99" Canvas.Left="227" Canvas.Top="466" PointerPressed="Cup_PointerPressed">
+        <Canvas x:Name="mainCanvas">
+            <Grid x:Name="Cup0" Height="120" Width="99" Canvas.Left="227" Canvas.Top="466">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -40,6 +28,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup0Button"  Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup1" Height="120" Width="99" Canvas.Left="377" Canvas.Top="466">
                 <Grid.ColumnDefinitions>
@@ -55,6 +44,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup1Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-15,-16,-11" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup2" Height="120" Width="99" Canvas.Left="518" Canvas.Top="466">
                 <Grid.ColumnDefinitions>
@@ -70,6 +60,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup2Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup3" Height="120" Width="99" Canvas.Left="669" Canvas.Top="466">
                 <Grid.ColumnDefinitions>
@@ -85,6 +76,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup3Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup4" Height="120" Width="99" Canvas.Left="815" Canvas.Top="462">
                 <Grid.ColumnDefinitions>
@@ -100,6 +92,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup4Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-12,-16,-14" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup5" Height="120" Width="99" Canvas.Left="963" Canvas.Top="464">
                 <Grid.ColumnDefinitions>
@@ -115,7 +108,8 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-            </Grid>-->
+                <Button x:Name="Cup5Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-13,-17,-13" Grid.RowSpan="5"/>
+            </Grid>
             <Grid x:Name="Cup6" Height="288" Width="99" Canvas.Left="1112" Canvas.Top="291">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
@@ -138,7 +132,7 @@
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
             </Grid>
-            <!--<Grid x:Name="Cup7" Height="120" Width="99" Canvas.Left="966" Canvas.Top="278">
+            <Grid x:Name="Cup7" Height="120" Width="99" Canvas.Left="966" Canvas.Top="278">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -152,6 +146,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup7Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup8" Height="120" Width="99" Canvas.Left="818" Canvas.Top="279">
                 <Grid.ColumnDefinitions>
@@ -167,6 +162,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup8Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup9" Height="120" Width="99" Canvas.Left="672" Canvas.Top="279">
                 <Grid.ColumnDefinitions>
@@ -182,6 +178,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup9Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup10" Height="120" Width="99" Canvas.Left="521" Canvas.Top="278">
                 <Grid.ColumnDefinitions>
@@ -197,6 +194,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup10Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup11" Height="120" Width="99" Canvas.Left="379" Canvas.Top="278">
                 <Grid.ColumnDefinitions>
@@ -212,6 +210,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Cup11Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup12" Height="120" Width="99" Canvas.Left="230" Canvas.Top="278">
                 <Grid.ColumnDefinitions>
@@ -227,7 +226,8 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-            </Grid>-->
+                <Button x:Name="Cup12Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
+            </Grid>
             <Grid x:Name="Cup13" Height="288" Width="99" Canvas.Left="77" Canvas.Top="291">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
@@ -251,16 +251,19 @@
                 </Grid.RowDefinitions>
             </Grid>
         </Canvas>
-
-        <Button x:Name="button"
-                Content="Move White Circle"
-                HorizontalAlignment="Left" 
-                Margin="934,51,0,0"
-                VerticalAlignment="Top"
-                Height="133"
-                Width="196"
-                Click="button_Click">
-        </Button>
-
+        <!--<TextBlock x:Name="Cup0MarbleCount" Margin="263,597,987,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup1MarbleCount" Margin="418,597,832,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup2MarbleCount" Margin="557,597,693,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup3MarbleCount" Margin="709,597,541,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup4MarbleCount" Margin="857,597,393,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup5MarbleCount" Margin="1006,597,244,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Mancala1MarbleCount" Margin="1154,597,96,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup7MarbleCount" Margin="1006,229,244,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup8MarbleCount" Margin="857,229,393,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup9MarbleCount" Margin="709,229,541,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup10MarbleCount" Margin="557,229,693,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup11MarbleCount" Margin="418,229,832,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Cup12MarbleCount" Margin="263,229,987,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
+        <TextBlock x:Name="Mancala2MarbleCount" Margin="118,229,1132,541" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>-->
     </Grid>
 </Page>
