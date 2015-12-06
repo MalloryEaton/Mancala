@@ -22,6 +22,7 @@ namespace Mancala
         DoubleAnimation animation = new DoubleAnimation();
         DoubleAnimation animation2 = new DoubleAnimation();
         bool isPlayer1Turn = true;
+        bool preventClick = false;
 
         #region Marbles
         Marble marble1 = new Marble();
@@ -471,7 +472,7 @@ namespace Mancala
         private void SetStoryboardAnimation1(int marbleNumber, double toCoordinate, double fromCoordinate)
         {
             animation.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
-            animation.Duration = new TimeSpan(0, 0, 0, 0, 100);
+            animation.Duration = new TimeSpan(0, 0, 0, 0, 150);
             switch (marbleNumber)
             {
                 case 1:
@@ -619,7 +620,7 @@ namespace Mancala
                     Storyboard.SetTarget(animation, marble48.ellipse);
                     break;
             }
-            Storyboard.SetTargetProperty(animation, "(Canvas.Top)");
+            Storyboard.SetTargetProperty(animation, "(Canvas.Left)");
             animation.To = toCoordinate;
             animation.From = fromCoordinate;
             animation.FillBehavior = FillBehavior.HoldEnd;
@@ -628,7 +629,7 @@ namespace Mancala
         private void SetStoryboardAnimation2(int marbleNumber, double toCoordinate, double fromCoordinate)
         {
             animation2.BeginTime = new TimeSpan(0, 0, 0, 0, 0);
-            animation2.Duration = new TimeSpan(0, 0, 0, 0, 100);
+            animation2.Duration = new TimeSpan(0, 0, 0, 0, 150);
             switch (marbleNumber)
             {
                 case 1:
@@ -776,13 +777,13 @@ namespace Mancala
                     Storyboard.SetTarget(animation2, marble48.ellipse);
                     break;
             }
-            Storyboard.SetTargetProperty(animation2, "(Canvas.Left)");
+            Storyboard.SetTargetProperty(animation2, "(Canvas.Top)");
             animation2.To = toCoordinate;
             animation2.From = fromCoordinate;
             animation2.FillBehavior = FillBehavior.HoldEnd;
         }
         
-        private void AnimateMarbles(Queue<AnimationInformation> queue)
+        private void AnimateMarbles(Queue<AnimationInformation> queue, int endCupNumber)
         {
             AnimationInformation ani = new AnimationInformation();
 
@@ -808,6 +809,55 @@ namespace Mancala
                     storyboard.Completed += completed;
                     storyboard.Begin();
                 }
+                else //animation is finished
+                {
+                    preventClick = false;
+
+                    if(isPlayer1Turn)
+                    {
+                        if (endCupNumber != 6)
+                        {
+                            // switch turns
+                            if (IsCapture(endCupNumber))
+                            {
+                                playerTurntxtbx.Text = "Player One: Capture!";
+                                preventClick = true;
+                                CaptureLogic();
+                            }
+                            else
+                            {
+                                isPlayer1Turn = !isPlayer1Turn;
+                                playerTurntxtbx.Text = "Player Two";
+                            }
+                        }
+                        else
+                        {
+                            playerTurntxtbx.Text = "Player One: Free Turn";
+                        }
+                    }
+                    else //player 2
+                    {
+                        if (endCupNumber != 13)
+                        {
+                            // switch turns
+                            if (IsCapture(endCupNumber))
+                            {
+                                playerTurntxtbx.Text = "Player Two: Capture!";
+                                preventClick = true;
+                                CaptureLogic();
+                            }
+                            else
+                            {
+                                isPlayer1Turn = !isPlayer1Turn;
+                                playerTurntxtbx.Text = "Player One";
+                            }
+                        }
+                        else
+                        {
+                            playerTurntxtbx.Text = "Player Two: Free Turn";
+                        }
+                    }
+                }
             };
 
             ani = queue.Dequeue();
@@ -822,7 +872,7 @@ namespace Mancala
             storyboard.Begin();
         }
 
-        private void moveMarblesLogic(Cup startCup)
+        private void MoveMarblesLogic(Cup startCup, int endCupNumber)
         {
             Marble marbleToMove;
             int numOfMarbles = -1;
@@ -881,156 +931,128 @@ namespace Mancala
                     stuffToAnimate.Enqueue(new AnimationInformation(marbleToMove, firstEmptySlotX, firstEmptySlotY,
                         startCup.coordinates[startCup.marbleCount].X, startCup.coordinates[startCup.marbleCount].Y));
                 }
-                AnimateMarbles(stuffToAnimate);
+                AnimateMarbles(stuffToAnimate, endCupNumber);
             }
         }
 
         private void Cup_Click(object sender, RoutedEventArgs e)
         {
-            
-            Cup startCup = null;
-            int endCupNumber;
-            bool isFreeTurn = false;
-            bool isCapture = false;
+            if(!preventClick)
+            {
+                preventClick = true;
+                Cup startCup = null;
+                int endCupNumber;
 
-            #region Start Cup Initialization
-            if (e.OriginalSource.Equals(Cup0Button))
-            {
-                startCup = cup0;
-            }
-            if (e.OriginalSource.Equals(Cup1Button))
-            {
-                startCup = cup1;
-            }
-            if (e.OriginalSource.Equals(Cup2Button))
-            {
-                startCup = cup2;
-            }
-            if (e.OriginalSource.Equals(Cup3Button))
-            {
-                startCup = cup3;
-            }
-            if (e.OriginalSource.Equals(Cup4Button))
-            {
-                startCup = cup4;
-            }
-            if (e.OriginalSource.Equals(Cup5Button))
-            {
-                startCup = cup5;
-            }
-            if (e.OriginalSource.Equals(Cup7Button))
-            {
-                startCup = cup7;
-            }
-            if (e.OriginalSource.Equals(Cup8Button))
-            {
-                startCup = cup8;
-            }
-            if (e.OriginalSource.Equals(Cup9Button))
-            {
-                startCup = cup9;
-            }
-            if (e.OriginalSource.Equals(Cup10Button))
-            {
-                startCup = cup10;
-            }
-            if (e.OriginalSource.Equals(Cup11Button))
-            {
-                startCup = cup11;
-            }
-            if (e.OriginalSource.Equals(Cup12Button))
-            {
-                startCup = cup12;
-            }
-            #endregion
-
-            if (startCup.marbleCount > 0)
-            {
-                endCupNumber = startCup.cupNumber + startCup.marbleCount;
-                
-                if (isPlayer1Turn && startCup.cupNumber >= 0 && startCup.cupNumber <= 5)
+                #region Start Cup Initialization
+                if (e.OriginalSource.Equals(Cup0Button))
                 {
-                    moveMarblesLogic(startCup);
-                    if (endCupNumber != 6)
+                    startCup = cup0;
+                }
+                if (e.OriginalSource.Equals(Cup1Button))
+                {
+                    startCup = cup1;
+                }
+                if (e.OriginalSource.Equals(Cup2Button))
+                {
+                    startCup = cup2;
+                }
+                if (e.OriginalSource.Equals(Cup3Button))
+                {
+                    startCup = cup3;
+                }
+                if (e.OriginalSource.Equals(Cup4Button))
+                {
+                    startCup = cup4;
+                }
+                if (e.OriginalSource.Equals(Cup5Button))
+                {
+                    startCup = cup5;
+                }
+                if (e.OriginalSource.Equals(Cup7Button))
+                {
+                    startCup = cup7;
+                }
+                if (e.OriginalSource.Equals(Cup8Button))
+                {
+                    startCup = cup8;
+                }
+                if (e.OriginalSource.Equals(Cup9Button))
+                {
+                    startCup = cup9;
+                }
+                if (e.OriginalSource.Equals(Cup10Button))
+                {
+                    startCup = cup10;
+                }
+                if (e.OriginalSource.Equals(Cup11Button))
+                {
+                    startCup = cup11;
+                }
+                if (e.OriginalSource.Equals(Cup12Button))
+                {
+                    startCup = cup12;
+                }
+                #endregion
+
+                if (startCup.marbleCount > 0)
+                {
+                    endCupNumber = startCup.cupNumber + startCup.marbleCount;
+                    //there's a problem here because of looping back to zero
+
+                    if (isPlayer1Turn && startCup.cupNumber >= 0 && startCup.cupNumber <= 5)
                     {
-                        // switch turns
-                        isPlayer1Turn = !isPlayer1Turn;
+                        MoveMarblesLogic(startCup, endCupNumber);
+                    }
+                    else if (!isPlayer1Turn && startCup.cupNumber >= 7 && startCup.cupNumber <= 12)
+                    {
+                        MoveMarblesLogic(startCup, endCupNumber);
                     }
                     else
                     {
-                        isFreeTurn = true;
+                        // invalid move
                     }
-
-                }
-                else if (!isPlayer1Turn && startCup.cupNumber >= 7 && startCup.cupNumber <= 12)
-                {
-                    moveMarblesLogic(startCup);
-                    if (endCupNumber != 13)
-                    {
-                        // switch turns
-                        isPlayer1Turn = !isPlayer1Turn;
-                    }
-                    else
-                    {
-                        isFreeTurn = true;
-                    }
-                }
-                else
-                {
-                    // invalid move
-                }
-                
-                if (isPlayer1Turn )
-                {
-                    if (isCapture)
-                    {
-                        playerTurntxtbx.Text = "Player One Capture";
-                        isCapture = false;
-                    }
-                    if (isFreeTurn)
-                    {
-                        playerTurntxtbx.Text = "Player One Free";
-                        isFreeTurn = false;
-                    }
-                    else
-                        playerTurntxtbx.Text = "Player One Turn";
-                }
-                else
-                {
-                    if (isCapture)
-                    {
-                        playerTurntxtbx.Text = "Player Two Capture";
-                        isCapture = false;
-                    }
-                    if (isFreeTurn)
-                    {
-                        playerTurntxtbx.Text = "Player Two Free";
-                        isFreeTurn = false;
-                    }
-                    else
-                        playerTurntxtbx.Text = "Player Two Turn";
-                }
-
-                if ((endCupNumber == 0 && cups[12].marbleCount > 0) ||
-                    (endCupNumber == 1 && cups[11].marbleCount > 0) ||
-                    (endCupNumber == 2 && cups[10].marbleCount > 0) ||
-                    (endCupNumber == 3 && cups[9].marbleCount > 0) ||
-                    (endCupNumber == 4 && cups[8].marbleCount > 0) ||
-                    (endCupNumber == 5 && cups[7].marbleCount > 0) ||
-                    (endCupNumber == 12 && cups[0].marbleCount > 0) ||
-                    (endCupNumber == 11 && cups[1].marbleCount > 0) ||
-                    (endCupNumber == 10 && cups[2].marbleCount > 0) ||
-                    (endCupNumber == 9 && cups[3].marbleCount > 0) ||
-                    (endCupNumber == 8 && cups[4].marbleCount > 0) ||
-                    (endCupNumber == 7 && cups[5].marbleCount > 0))
-                {
-                    // do the logic here
-                    isCapture = true;
-                    // TODO: call capture function!!!
-                    // change text again to next player turn
                 }
             }
+        }
 
+        private bool IsCapture(int endCupNumber)
+        {
+            if (isPlayer1Turn &&
+                ((endCupNumber == 0 && cups[endCupNumber].marbleCount == 1 && cups[12].marbleCount > 0) ||
+                (endCupNumber == 1 && cups[endCupNumber].marbleCount == 1 && cups[11].marbleCount > 0) ||
+                (endCupNumber == 2 && cups[endCupNumber].marbleCount == 1 && cups[10].marbleCount > 0) ||
+                (endCupNumber == 3 && cups[endCupNumber].marbleCount == 1 && cups[9].marbleCount > 0) ||
+                (endCupNumber == 4 && cups[endCupNumber].marbleCount == 1 && cups[8].marbleCount > 0) ||
+                (endCupNumber == 5 && cups[endCupNumber].marbleCount == 1 && cups[7].marbleCount > 0)))
+            {
+                return true;
+            }
+            else if(!isPlayer1Turn &&
+                ((endCupNumber == 12 && cups[endCupNumber].marbleCount == 1 && cups[0].marbleCount > 0) ||
+                (endCupNumber == 11 && cups[endCupNumber].marbleCount == 1 && cups[1].marbleCount > 0) ||
+                (endCupNumber == 10 && cups[endCupNumber].marbleCount == 1 && cups[2].marbleCount > 0) ||
+                (endCupNumber == 9 && cups[endCupNumber].marbleCount == 1 && cups[3].marbleCount > 0) ||
+                (endCupNumber == 8 && cups[endCupNumber].marbleCount == 1 && cups[4].marbleCount > 0) ||
+                (endCupNumber == 7 && cups[endCupNumber].marbleCount == 1 && cups[5].marbleCount > 0)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void CaptureLogic()
+        {
+
+
+            isPlayer1Turn = !isPlayer1Turn;
+            if(isPlayer1Turn)
+            {
+                playerTurntxtbx.Text = "Player One";
+            }
+            else
+            {
+                playerTurntxtbx.Text = "Player Two";
+            }
         }
     }
 

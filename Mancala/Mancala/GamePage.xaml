@@ -28,7 +28,7 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup0Button"  Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
+                <Button x:Name="Cup0Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
             </Grid>
             <Grid x:Name="Cup1" Height="120" Width="99" Canvas.Left="377" Canvas.Top="466">
                 <Grid.ColumnDefinitions>
