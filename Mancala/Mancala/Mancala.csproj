@@ -103,7 +103,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="System\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -135,6 +134,7 @@
     <None Include="Mancala_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\black.png" />
     <Content Include="Assets\body.jpg" />
     <Content Include="Assets\kirbyFacingDownward.png" />
     <Content Include="Assets\kirbyFacingUpward.png" />

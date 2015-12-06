@@ -813,63 +813,73 @@ namespace Mancala
                 {
                     preventClick = false;
 
-                    if(isPlayer1Turn)
+                    if (!SideIsEmpty())
                     {
-                        if (endCupNumber != 6)
+                        if (isPlayer1Turn)
                         {
-                            // switch turns
-                            if (IsCapture(endCupNumber))
+                            if (endCupNumber != 6)
                             {
-                                preventClick = true;
-                                CaptureLogic(endCupNumber);
-                                playerTurntxtbx.Text = "Player One: Capture!";
+                                // switch turns
+                                if (IsCapture(endCupNumber))
+                                {
+                                    preventClick = true;
+                                    CaptureLogic(endCupNumber);
+                                    playerTurntxtbx.Text = "Player One: Capture!";
+                                }
+                                else
+                                {
+                                    isPlayer1Turn = !isPlayer1Turn;
+                                    playerTurntxtbx.Text = "Player Two";
+                                }
                             }
                             else
                             {
-                                isPlayer1Turn = !isPlayer1Turn;
-                                playerTurntxtbx.Text = "Player Two";
+                                playerTurntxtbx.Text = "Player One: Free Turn";
                             }
                         }
-                        else
+                        else //player 2
                         {
-                            playerTurntxtbx.Text = "Player One: Free Turn";
+                            if (endCupNumber != 13)
+                            {
+                                // switch turns
+                                if (IsCapture(endCupNumber))
+                                {
+                                    preventClick = true;
+                                    CaptureLogic(endCupNumber);
+                                    playerTurntxtbx.Text = "Player Two: Capture!";
+                                }
+                                else
+                                {
+                                    isPlayer1Turn = !isPlayer1Turn;
+                                    playerTurntxtbx.Text = "Player One";
+                                }
+                            }
+                            else
+                            {
+                                playerTurntxtbx.Text = "Player Two: Free Turn";
+                            }
                         }
                     }
-                    else //player 2
+                    else //game is over
                     {
-                        if (endCupNumber != 13)
-                        {
-                            // switch turns
-                            if (IsCapture(endCupNumber))
-                            {
-                                preventClick = true;
-                                CaptureLogic(endCupNumber);
-                                playerTurntxtbx.Text = "Player Two: Capture!";
-                            }
-                            else
-                            {
-                                isPlayer1Turn = !isPlayer1Turn;
-                                playerTurntxtbx.Text = "Player One";
-                            }
-                        }
-                        else
-                        {
-                            playerTurntxtbx.Text = "Player Two: Free Turn";
-                        }
+                        playerTurntxtbx.Text = "Game Over";
+                        GameOverLogic();
                     }
                 }
             };
+            if(queue.Count > 0)
+            { 
+                ani = queue.Dequeue();
 
-            ani = queue.Dequeue();
+                // move with animation
+                SetStoryboardAnimation1(ani.marbleToMove.MarbleNumber, ani.toCoordinate.X, ani.fromCoordinate.X);
+                SetStoryboardAnimation2(ani.marbleToMove.MarbleNumber, ani.toCoordinate.Y, ani.fromCoordinate.Y);
 
-            // move with animation
-            SetStoryboardAnimation1(ani.marbleToMove.MarbleNumber, ani.toCoordinate.X, ani.fromCoordinate.X);
-            SetStoryboardAnimation2(ani.marbleToMove.MarbleNumber, ani.toCoordinate.Y, ani.fromCoordinate.Y);
-
-            storyboard.Children.Add(animation);
-            storyboard.Children.Add(animation2);
-            storyboard.Completed += completed;
-            storyboard.Begin();
+                storyboard.Children.Add(animation);
+                storyboard.Children.Add(animation2);
+                storyboard.Completed += completed;
+                storyboard.Begin();
+            }
         }
 
         private void MoveMarblesLogic(Cup startCup, int endCupNumber)
@@ -1156,7 +1166,6 @@ namespace Mancala
                 // find marble to send and deque it
                 marbleToMove = capturedCup.marbles.Pop();
 
-
                 // find the first empty slot and push on to mancala
                 if (isPlayer1Turn)
                 {
@@ -1186,6 +1195,93 @@ namespace Mancala
             // begin animation
             AnimateMarbles(marblesToAnimate, endCupNumber);
             preventClick = false;
+        }
+
+        private bool SideIsEmpty()
+        {
+            if((cup0.marbleCount == 0 &&
+                cup1.marbleCount == 0 &&
+                cup2.marbleCount == 0 &&
+                cup3.marbleCount == 0 &&
+                cup4.marbleCount == 0 &&
+                cup5.marbleCount == 0) ||
+                (cup7.marbleCount == 0 &&
+                cup8.marbleCount == 0 &&
+                cup9.marbleCount == 0 &&
+                cup10.marbleCount == 0 &&
+                cup11.marbleCount == 0 &&
+                cup12.marbleCount == 0))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void GameOverLogic()
+        {
+            Queue<AnimationInformation> marblesToAnimate = new Queue<AnimationInformation>();
+            Marble marbleToMove = null;
+            double toX = 0;
+            double toY = 0;
+            int endCupNumber;
+
+            //this may need to switch, but I dont think so
+
+            if (isPlayer1Turn) // move player 2's pieces
+            {
+                endCupNumber = 13;
+                for (int i = 7; i <= 12; i++)
+                {
+                    for(int j = cups[i].marbleCount; j > 0; j--)
+                    {
+                        // remove from current cup
+                        marbleToMove = cups[i].marbles.Pop();
+                        
+                        // place in mancala
+                        Mancala m = (Mancala)cups[endCupNumber];
+                        toX = m.mancalaCoordinates[cups[endCupNumber].marbleCount].X;
+                        toY = m.mancalaCoordinates[cups[endCupNumber].marbleCount].Y;
+                        cups[endCupNumber].marbles.Push(marbleToMove);
+                        cups[endCupNumber].marbleCount++;
+
+                        // enqueue to animation
+                        marblesToAnimate.Enqueue(new AnimationInformation(marbleToMove, toX, toY, // keep using from above
+                            cups[i].coordinates[cups[i].marbleCount].X, cups[i].coordinates[cups[i].marbleCount].Y));
+
+                        // decrement cup marble number
+                        cups[i].marbleCount--;
+                    }
+                }
+            }
+            else //move player 1's pieces
+            {
+                endCupNumber = 6;
+                for (int i = 0; i <= 5; i++)
+                {
+                    for (int j = cups[i].marbleCount; j > 0; j--)
+                    {
+                        // remove from current cup
+                        marbleToMove = cups[i].marbles.Pop();
+
+                        // place in mancala
+                        Mancala m = (Mancala)cups[endCupNumber];
+                        toX = m.mancalaCoordinates[cups[endCupNumber].marbleCount].X;
+                        toY = m.mancalaCoordinates[cups[endCupNumber].marbleCount].Y;
+                        cups[endCupNumber].marbles.Push(marbleToMove);
+                        cups[endCupNumber].marbleCount++;
+
+                        // enqueue to animation
+                        marblesToAnimate.Enqueue(new AnimationInformation(marbleToMove, toX, toY, // keep using from above
+                            cups[i].coordinates[cups[i].marbleCount].X, cups[i].coordinates[cups[i].marbleCount].Y));
+
+                        // decrement cup marble number
+                        cups[i].marbleCount--;
+                    }
+                }
+            }
+
+            // begin animation
+            AnimateMarbles(marblesToAnimate, endCupNumber);
         }
     }
 
