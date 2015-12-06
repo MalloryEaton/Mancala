@@ -23,6 +23,7 @@ namespace Mancala
         DoubleAnimation animation2 = new DoubleAnimation();
         bool isPlayer1Turn = true;
         bool preventClick = false;
+        bool gameOverAnimationHasOccurred = true;
 
         #region Marbles
         Marble marble1 = new Marble();
@@ -862,10 +863,24 @@ namespace Mancala
                     }
                     else //game is over
                     {
-                        playerTurntxtbx.Text = "Game Over";
-                        GameOverLogic();
-                        playerTurntxtbx.Text = "Play poop wins!";
+                        if(gameOverAnimationHasOccurred)
+                        {
+                            playerTurntxtbx.Text = "Game Over";
+                            GameOverLogic();
+                        }
+                        else
+                        {
+                            if (cups[6].marbleCount > cups[13].marbleCount) //player 1 wins
+                            {
+                                playerTurntxtbx.Text = "Player 1 Wins!!!";
+                            }
+                            else //player 2 wins
+                            {
+                                playerTurntxtbx.Text = "Player 2 Wins!!!";
+                            }
+                        }
                     }
+                    
                 }
             };
             if(queue.Count > 0)
@@ -945,8 +960,6 @@ namespace Mancala
 
                     stuffToAnimate.Enqueue(new AnimationInformation(marbleToMove, firstEmptySlotX, firstEmptySlotY,
                         startCup.coordinates[startCup.marbles.Count].X, startCup.coordinates[startCup.marbles.Count].Y));
-
-                    isFirstTimeAround = false;
                 }
                 AnimateMarbles(stuffToAnimate, endCupNumber);
             }
@@ -1289,6 +1302,7 @@ namespace Mancala
 
             // begin animation
             AnimateMarbles(marblesToAnimate, endCupNumber);
+            gameOverAnimationHasOccurred = false;
         }
     }
 
