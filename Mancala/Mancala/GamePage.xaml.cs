@@ -349,7 +349,7 @@ namespace Mancala
 
         private void PopulateMancalaCoordinateGrid(Coordinate[] coordinates)
         {
-            coordinates[47].X = coordinates[44].X + 75;
+            coordinates[47].X = coordinates[44].X + 60;
             coordinates[47].Y = coordinates[44].Y;
 
             double currentLeft = coordinates[47].X;
@@ -360,11 +360,11 @@ namespace Mancala
                 coordinates[i].X = currentLeft;
                 coordinates[i].Y = currentTop;
                 // move to the next column
-                currentLeft -= 25;
+                currentLeft -= 20;
                 // move to the next row
                 if (i % 4 == 0)
                 {
-                    currentTop += 24;
+                    currentTop += 19;
                     currentLeft = coordinates[47].X;
                 }
             }
@@ -447,7 +447,7 @@ namespace Mancala
 
         private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
         {
-            coordinates[19].X = coordinates[16].X + 75;
+            coordinates[19].X = coordinates[16].X + 60;
             coordinates[19].Y = coordinates[16].Y;
 
             double currentLeft = coordinates[19].X;
@@ -458,11 +458,11 @@ namespace Mancala
                 coordinates[i].X = currentLeft;
                 coordinates[i].Y = currentTop;
                 // move to the next column
-                currentLeft -= 25;
+                currentLeft -= 20;
                 // move to the next row
                 if (i % 4 == 0)
                 {
-                    currentTop += 24;
+                    currentTop += 19;
                     currentLeft = coordinates[19].X;
                 }
             }
@@ -1185,16 +1185,6 @@ namespace Mancala
             }
             // begin animation
             AnimateMarbles(marblesToAnimate, endCupNumber);
-
-            //isPlayer1Turn = !isPlayer1Turn;
-            //if(isPlayer1Turn)
-            //{
-            //    playerTurntxtbx.Text = "Player One";
-            //}
-            //else
-            //{
-            //    playerTurntxtbx.Text = "Player Two";
-            //}
             preventClick = false;
         }
     }

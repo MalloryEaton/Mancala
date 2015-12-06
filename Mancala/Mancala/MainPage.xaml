@@ -11,9 +11,9 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/body.jpg"/>
         </Grid.Background>
-        <Image Source="Assets/MancalaTitle.png" Margin="309,-57,-106,184"></Image>
-        <Button x:Name="InstructionsButton" Content="Instructions" HorizontalAlignment="Stretch" Margin="757,613,236,0" VerticalAlignment="Top" Height="80" Click="InstructionsButton_Click" FontSize="33.333"/>
-        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="757,456,0,0" VerticalAlignment="Top" Height="80" Width="287" Click="PlayButton_Click" FontSize="33.333"/>
+        <Image Source="Assets/MancalaTitle.png" Margin="263,-102,-60,229"></Image>
+        <Button x:Name="InstructionsButton" Content="Instructions" HorizontalAlignment="Stretch" Margin="562,542,174,0" VerticalAlignment="Top" Height="80" Click="InstructionsButton_Click" FontSize="33.333"/>
+        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="562,422,0,0" VerticalAlignment="Top" Height="80" Width="288" Click="PlayButton_Click" FontSize="33.333"/>
 
     </Grid>
 </Page>

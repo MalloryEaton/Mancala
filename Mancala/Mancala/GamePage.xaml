@@ -11,10 +11,10 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/body.jpg"/>
         </Grid.Background>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="614" Margin="-76,124,-570,0" VerticalAlignment="Top" Width="1926" Source="Assets/mancalaBoard.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="614" Margin="-60,124,-60,0" VerticalAlignment="Top" Width="1144" Source="Assets/mancalaBoard.png"/>
 
         <Canvas x:Name="mainCanvas">
-            <Grid x:Name="Cup0" Height="120" Width="99" Canvas.Left="227" Canvas.Top="466">
+            <Grid x:Name="Cup0" Height="98" Width="79" Canvas.Left="181" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -28,9 +28,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup0Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
+                <Button x:Name="Cup0Button" BorderThickness="0" Height="109" Width="96" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-9,-7,-15,-6" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup1" Height="120" Width="99" Canvas.Left="377" Canvas.Top="466">
+            <Grid x:Name="Cup1" Height="98" Width="79" Canvas.Left="301" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -44,9 +44,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup1Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-15,-16,-11" Grid.RowSpan="5"/>
+                <Button x:Name="Cup1Button" BorderThickness="0" Height="111" Width="96" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-10,-10,-14,-5" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup2" Height="120" Width="99" Canvas.Left="518" Canvas.Top="466">
+            <Grid x:Name="Cup2" Height="98" Width="79" Canvas.Left="414" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -60,9 +60,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup2Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
+                <Button x:Name="Cup2Button" BorderThickness="0" Height="110" Width="97" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-10,-8,-15,-6" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup3" Height="120" Width="99" Canvas.Left="669" Canvas.Top="466">
+            <Grid x:Name="Cup3" Height="98" Width="79" Canvas.Left="535" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -76,9 +76,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup3Button" BorderThickness="0" Height="145" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-14,-16,-11" Grid.RowSpan="5"/>
+                <Button x:Name="Cup3Button" BorderThickness="0" Height="110" Width="97" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-10,-8,-15,-6" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup4" Height="120" Width="99" Canvas.Left="815" Canvas.Top="462">
+            <Grid x:Name="Cup4" Height="98" Width="79" Canvas.Left="652" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -92,9 +92,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup4Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-12,-16,-14" Grid.RowSpan="5"/>
+                <Button x:Name="Cup4Button" BorderThickness="0" Height="109" Width="97" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-11,-6,-14,-7" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup5" Height="120" Width="99" Canvas.Left="963" Canvas.Top="464">
+            <Grid x:Name="Cup5" Height="98" Width="80" Canvas.Left="770" Canvas.Top="398">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -108,127 +108,9 @@
                     <RowDefinition Height="24"/>
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Cup5Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-13,-17,-13" Grid.RowSpan="5"/>
+                <Button x:Name="Cup5Button" BorderThickness="0" Height="110" Width="98" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-10,-8,0,-6" Grid.RowSpan="4"/>
             </Grid>
-            <Grid x:Name="Cup6" Height="288" Width="99" Canvas.Left="1112" Canvas.Top="291">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-            </Grid>
-            <Grid x:Name="Cup7" Height="120" Width="99" Canvas.Left="966" Canvas.Top="278">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup7Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup8" Height="120" Width="99" Canvas.Left="818" Canvas.Top="279">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup8Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup9" Height="120" Width="99" Canvas.Left="672" Canvas.Top="279">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup9Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-17,-13,-16,-13" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup10" Height="120" Width="99" Canvas.Left="521" Canvas.Top="278">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup10Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup11" Height="120" Width="99" Canvas.Left="379" Canvas.Top="278">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup11Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup12" Height="120" Width="99" Canvas.Left="230" Canvas.Top="278">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="24"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="24"/>
-                </Grid.RowDefinitions>
-                <Button x:Name="Cup12Button" BorderThickness="0" Height="146" Width="129" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-16,-12,-17,-14" Grid.RowSpan="5"/>
-            </Grid>
-            <Grid x:Name="Cup13" Height="288" Width="99" Canvas.Left="77" Canvas.Top="291">
+            <Grid x:Name="Cup6" Height="235" Width="79" Canvas.Left="888" Canvas.Top="265">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
@@ -250,7 +132,127 @@
                     <RowDefinition Height="24"/>
                 </Grid.RowDefinitions>
             </Grid>
-            <TextBlock x:Name="playerTurntxtbx" Text="Player One" Canvas.Left="227" Canvas.Top="408" Height="67" Width="838" FontSize="40" TextAlignment="Center" Foreground="#FF020202" FontWeight="Bold"></TextBlock>
+            <Grid x:Name="Cup7" Height="98" Width="79" Canvas.Left="773" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup7Button" BorderThickness="0" Height="107" Width="95" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-10,-3,-13,16" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup8" Height="98" Width="80" Canvas.Left="654" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup8Button" BorderThickness="0" Height="108" Width="97" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-10,-3,-15,15" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup9" Height="98" Width="80" Canvas.Left="537" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup9Button" BorderThickness="0" Height="110" Width="99" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-11,-4,0,14" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup10" Height="98" Width="79" Canvas.Left="417" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup10Button" BorderThickness="0" Height="108" Width="98" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-11,-2,-15,14" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup11" Height="98" Width="79" Canvas.Left="303" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup11Button" BorderThickness="0" Height="108" Width="96" Click="Cup_Click" Grid.ColumnSpan="4" Margin="-8,-2,0,14" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup12" Height="98" Width="79" Canvas.Left="184" Canvas.Top="248">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="Cup12Button" BorderThickness="0" Height="108" Width="96" Click="Cup_Click" Grid.ColumnSpan="3" Margin="-9,-2,-15,14" Grid.RowSpan="5"/>
+            </Grid>
+            <Grid x:Name="Cup13" Height="235" Width="79" Canvas.Left="61" Canvas.Top="262">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <TextBlock x:Name="playerTurntxtbx" Text="Player One" Canvas.Left="261" Canvas.Top="349" Height="40" Width="481" FontSize="33" TextAlignment="Center" Foreground="#FF020202" FontWeight="Bold"></TextBlock>
+            <Image Source="Assets/kirbyFacingUpward.png" Canvas.Left="788" Canvas.Top="578" Height="167" RenderTransformOrigin="0.5,0.5" Width="214"/>
+            <Image Source="Assets/kirbyFacingDownward.png" Canvas.Left="12" Canvas.Top="12" Height="167" RenderTransformOrigin="0.5,0.5" Width="214"/>
         </Canvas>
         <!--<TextBlock x:Name="Cup0MarbleCount" Margin="263,597,987,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>
         <TextBlock x:Name="Cup1MarbleCount" Margin="418,597,832,173" Text="{Binding}" Foreground="Black" FontWeight="Bold" FontSize="26.667"/>

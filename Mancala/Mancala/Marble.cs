@@ -16,8 +16,8 @@ namespace Mancala
         public Marble()
         {
             ellipse = new Ellipse();
-            ellipse.Width = 24;
-            ellipse.Height = 24;
+            ellipse.Width = 20;
+            ellipse.Height = 20;
 
             // randomize elipse color
             SolidColorBrush[] brushArray = new SolidColorBrush[5];

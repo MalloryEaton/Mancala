@@ -136,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\body.jpg" />
+    <Content Include="Assets\kirbyFacingDownward.png" />
+    <Content Include="Assets\kirbyFacingUpward.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\mancalaBoard.png" />
     <Content Include="Assets\MancalaTitle.png" />
