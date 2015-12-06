@@ -864,6 +864,7 @@ namespace Mancala
                     {
                         playerTurntxtbx.Text = "Game Over";
                         GameOverLogic();
+                        playerTurntxtbx.Text = "Play poop wins!";
                     }
                 }
             };
@@ -890,18 +891,15 @@ namespace Mancala
             Queue<AnimationInformation> stuffToAnimate = new Queue<AnimationInformation>();
             if (startCup.marbleCount != 0)
             {
-                numOfMarbles = numberOfMarblesToBeMoved = startCup.marbleCount;
-
-                marbleToMove = startCup.marbles.Pop();
+                numOfMarbles = startCup.marbleCount;
+                numberOfMarblesToBeMoved = startCup.marbleCount;
+                startCup.marbleCount = 0;
 
                 int i = startCup.cupNumber + 1;
 
                 while (numberOfMarblesToBeMoved != 0)
                 {
-                    if (i != startCup.cupNumber + 1) //skip this the first time through
-                    {
-                        marbleToMove = startCup.marbles.Pop();
-                    }
+                    marbleToMove = startCup.marbles.Pop();
 
                     if (i == 6 && !isPlayer1Turn)
                     {
@@ -928,18 +926,27 @@ namespace Mancala
                     }
                     else
                     {
-                        firstEmptySlotX = cups[i].coordinates[cups[i].marbleCount].X;
-                        firstEmptySlotY = cups[i].coordinates[cups[i].marbleCount].Y;
+                        if (cups[i] == startCup)
+                        {
+                            firstEmptySlotX = cups[i].coordinates[0].X;
+                            firstEmptySlotY = cups[i].coordinates[0].Y;
+                        }
+                        else
+                        {
+                            firstEmptySlotX = cups[i].coordinates[cups[i].marbles.Count].X;
+                            firstEmptySlotY = cups[i].coordinates[cups[i].marbles.Count].Y;
+                        }
                     }
 
                     cups[i].marbles.Push(marbleToMove);
                     numberOfMarblesToBeMoved--;
-                    startCup.marbleCount--;
                     cups[i].marbleCount++;
                     i++;
 
                     stuffToAnimate.Enqueue(new AnimationInformation(marbleToMove, firstEmptySlotX, firstEmptySlotY,
-                        startCup.coordinates[startCup.marbleCount].X, startCup.coordinates[startCup.marbleCount].Y));
+                        startCup.coordinates[startCup.marbles.Count].X, startCup.coordinates[startCup.marbles.Count].Y));
+
+                    isFirstTimeAround = false;
                 }
                 AnimateMarbles(stuffToAnimate, endCupNumber);
             }
