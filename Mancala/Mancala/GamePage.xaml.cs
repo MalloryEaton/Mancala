@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Mancala.Common;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -17,6 +20,8 @@ namespace Mancala
     /// </summary>
     public sealed partial class GamePage : Page
     {
+        private NavigationHelper navigationHelper;
+        private ObservableDictionary defaultViewModel = new ObservableDictionary();
         Storyboard storyboard = new Storyboard();
         Storyboard storyboard1 = new Storyboard();
         DoubleAnimation animation = new DoubleAnimation();
@@ -98,13 +103,55 @@ namespace Mancala
 
         #region Mancala
         // cup 6 and 13 are mancala 1 and 2 respectively
-        private Mancala mancala1 = new Mancala();
-        private Mancala mancala2 = new Mancala();
+        private MancalaCup mancala1 = new MancalaCup();
+        private MancalaCup mancala2 = new MancalaCup();
         #endregion
+
+        /// <summary>
+        /// Populates the page with content passed during navigation. Any saved state is also
+        /// provided when recreating a page from a prior session.
+        /// </summary>
+        /// <param name="sender">
+        /// The source of the event; typically <see cref="NavigationHelper"/>
+        /// </param>
+        /// <param name="e">Event data that provides both the navigation parameter passed to
+        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
+        /// a dictionary of state preserved by this page during an earlier
+        /// session. The state will be null the first time a page is visited.</param>
+        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+        }
+
+        /// <summary>
+        /// Preserves state associated with this page in case the application is suspended or the
+        /// page is discarded from the navigation cache.  Values must conform to the serialization
+        /// requirements of <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
+        /// <param name="e">Event data that provides an empty dictionary to be populated with
+        /// serializable state.</param>
+        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
+
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) 
+        {
+            navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
 
         public GamePage()
         {
             this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += navigationHelper_LoadState;
+            this.navigationHelper.SaveState += navigationHelper_SaveState;
             this.Loaded += (sender, e) =>
             {
                 //have something for loading saved state
@@ -823,7 +870,7 @@ namespace Mancala
                     // finds the coordinates of the first empty slot in the ith cup
                     if (i == 6 || i == 13)
                     {
-                        Mancala m = (Mancala)cups[i];
+                        MancalaCup m = (MancalaCup)cups[i];
                         firstEmptySlotX = m.mancalaCoordinates[cups[i].marbleCount].X;
                         firstEmptySlotY = m.mancalaCoordinates[cups[i].marbleCount].Y;
                     }
@@ -1008,7 +1055,7 @@ namespace Mancala
             // finds the coordinates of the first empty slot in the correct player's mancala
             if (isPlayer1Turn)
             {
-                Mancala m = (Mancala)cups[6];
+                MancalaCup m = (MancalaCup)cups[6];
                 firstEmptySlotX = m.mancalaCoordinates[cups[6].marbleCount].X;
                 firstEmptySlotY = m.mancalaCoordinates[cups[6].marbleCount].Y;
                 cups[6].marbles.Push(marbleToMove);
@@ -1017,7 +1064,7 @@ namespace Mancala
             }
             else //player 2
             {
-                Mancala m = (Mancala)cups[13];
+                MancalaCup m = (MancalaCup)cups[13];
                 firstEmptySlotX = m.mancalaCoordinates[cups[13].marbleCount].X;
                 firstEmptySlotY = m.mancalaCoordinates[cups[13].marbleCount].Y;
                 cups[13].marbles.Push(marbleToMove);
@@ -1077,7 +1124,7 @@ namespace Mancala
                 // find the first empty slot and push on to mancala
                 if (isPlayer1Turn)
                 {
-                    Mancala m = (Mancala)cups[6];
+                    MancalaCup m = (MancalaCup)cups[6];
                     firstEmptySlotX = m.mancalaCoordinates[cups[6].marbleCount].X;
                     firstEmptySlotY = m.mancalaCoordinates[cups[6].marbleCount].Y;
                     cups[6].marbles.Push(marbleToMove);
@@ -1085,7 +1132,7 @@ namespace Mancala
                 }
                 else //player 2
                 {
-                    Mancala m = (Mancala)cups[13];
+                    MancalaCup m = (MancalaCup)cups[13];
                     firstEmptySlotX = m.mancalaCoordinates[cups[13].marbleCount].X;
                     firstEmptySlotY = m.mancalaCoordinates[cups[13].marbleCount].Y;
                     cups[13].marbles.Push(marbleToMove);
@@ -1144,9 +1191,9 @@ namespace Mancala
                     {
                         // remove from current cup
                         marbleToMove = cups[i].marbles.Pop();
-                        
+
                         // place in mancala
-                        Mancala m = (Mancala)cups[endCupNumber];
+                        MancalaCup m = (MancalaCup)cups[endCupNumber];
                         toX = m.mancalaCoordinates[cups[endCupNumber].marbleCount].X;
                         toY = m.mancalaCoordinates[cups[endCupNumber].marbleCount].Y;
                         cups[endCupNumber].marbles.Push(marbleToMove);
@@ -1172,7 +1219,7 @@ namespace Mancala
                         marbleToMove = cups[i].marbles.Pop();
 
                         // place in mancala
-                        Mancala m = (Mancala)cups[endCupNumber];
+                        MancalaCup m = (MancalaCup)cups[endCupNumber];
                         toX = m.mancalaCoordinates[cups[endCupNumber].marbleCount].X;
                         toY = m.mancalaCoordinates[cups[endCupNumber].marbleCount].Y;
                         cups[endCupNumber].marbles.Push(marbleToMove);
@@ -1212,6 +1259,8 @@ namespace Mancala
             isPlayer1Turn = true;
             playerTurntxtbx.Text = "Player One";
         }
+
+       
     }
 
     struct AnimationInformation

@@ -63,27 +63,27 @@
         </Grid>
 
         <Image Source="highlightedBtn.png" Height="48" Width="44" Margin="523,18,457,562" Grid.Row="1"/>
-        <TextBlock x:Name="GamePlayTitle" FontSize="30" HorizontalAlignment="Left" Margin="71,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Game Play" VerticalAlignment="Top" Height="40" Width="221"/>
-        <TextBlock x:Name="GamePlayText" FontSize="23" HorizontalAlignment="Left" Margin="113,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="499" Width="800">
-        	    <Run Text="- Each player takes turns taking all the stones from one of your pits, and then dropping a stone into each successive cup in a counter-clockwise fashion."/>
+        <TextBlock x:Name="GamePlayTitle" FontSize="30" HorizontalAlignment="Left" Margin="71,8,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Game Play" VerticalAlignment="Top" Height="40" Width="221"/>
+        <TextBlock x:Name="GamePlayText" FontSize="23" HorizontalAlignment="Left" Margin="113,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="555" Width="800">
+        	    <Run Text="- Each player takes turns taking all the marbles from one of your cups and then dropping a marble into each successive cup in a counter-clockwise fashion."/>
                 <LineBreak/>
         	    <LineBreak/>
-        	    <Run Text="- If you drop a stone in your Mancala, and have stones left, then you continue dropping stones into your opponent's cups."/>
+        	    <Run Text="- If you drop a marble in your Mancala, and have marbles left, then you continue dropping marbles into your opponent's cups."/>
                 <LineBreak/>
                 <LineBreak/>
         	    <Run Text="- Only drop marbles into your own Mancala."/>
                 <LineBreak/>
                 <LineBreak/>
-        	    <Run Text="- The game ends when all of a player's cups are empty. At that point, the other player places the remaining stones in their own Mancala."/>
+        	    <Run Text="- The game ends when all of a player's cups are empty. At that point, the other player places the remaining marbles in thier side of the board's cups into their own Mancala."/>
                 <LineBreak/>
                 <LineBreak/>
-        	    <Run Text="- The winner is the person with the most stones in their Mancala."/>
+        	    <Run Text="- The winner is the person with the most marbles in their Mancala when the game ends."/>
                 <LineBreak/>
                 <LineBreak/>
-        	    <Run Text="- Free Turn:   happens when the final stone is placed in player's Mancala"/>
+        	    <Run Text="- Free Turn:   happens when the final marble is placed in player's Mancala"/>
                 <LineBreak/>
                 <LineBreak/>
-        	    <Run Text="- Capture:   happens when the final stone ends in one of your empty pits (that stone plus any stones in the opposite pit are placed into your Mancala."/>
+        	    <Run Text="- Capture:   happens when the final marble ends in one of your empty cup (that marble plus any marvles in the opposite cup are placed into your Mancala."/>
         </TextBlock>
     </Grid>
 </Page>

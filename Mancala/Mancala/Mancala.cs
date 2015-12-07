@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Mancala
 {
-    public class Mancala: Cup
+    public class MancalaCup: Cup
     {
         public Coordinate[] mancalaCoordinates = new Coordinate[49];
         //public int mancalaNumber;
         //Stack<Marble> marbles;
         //public short marbleCount;
-        public Mancala()
+        public MancalaCup()
         {
             marbleCount = 0;
             marbles = new Stack<Marble>();

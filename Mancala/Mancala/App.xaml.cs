@@ -32,6 +32,7 @@ namespace Mancala
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //Common.SuspensionManager.KnownTypes.Add(typeof(List<Cup>));
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Mancala
 
                 // Saving app state
                 // http://msdn.microsoft.com/en-us/library/windows/apps/hh986968.aspx
-                //Mancala.Common.SuspensionManager.RegisterFrame(rootFrame, "appFrame");
+                Mancala.Common.SuspensionManager.RegisterFrame(rootFrame, "appFrame");
 
                 // Set the default language
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];

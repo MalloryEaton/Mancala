@@ -65,13 +65,13 @@
         <TextBlock x:Name="BoardLayoutTitle" FontSize="30" HorizontalAlignment="Left" Margin="71,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Board Layout" VerticalAlignment="Top" Height="40" Width="221"/>
         <Image Source="Assets/board set up.png" Margin="-10,327,17,72" Grid.Row="1"/>
         <TextBlock x:Name="BoardLayoutText" FontSize="25" HorizontalAlignment="Left" Margin="113,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="199" Width="881">
-        	<Run Text="- There are seven cups per player, player one is blue, and player two is yellow"/>
+        	<Run Text="- There are seven cups per player. Player one is blue, and player two is yellow"/>
             <LineBreak/>
         	<LineBreak/>
         	<Run Text="- The smaller six cups are for gameplay"/>
             <LineBreak/>
             <LineBreak/>
-        	<Run Text="- The larger cup is your goal or Mancala, get as many marbles in here as you can"/>
+        	<Run Text="- The larger cup is your goal or Mancala. Try to get as many marbles in here as you can"/>
         </TextBlock>
         
     </Grid>
