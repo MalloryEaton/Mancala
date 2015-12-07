@@ -132,6 +132,7 @@
     <Compile Include="Mancala.cs" />
     <Compile Include="Marble.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveState.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

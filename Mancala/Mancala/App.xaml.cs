@@ -32,7 +32,7 @@ namespace Mancala
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            //Common.SuspensionManager.KnownTypes.Add(typeof(List<Cup>));
+            //Common.SuspensionManager.KnownTypes.Add(typeof(SaveState));
         }
 
         /// <summary>

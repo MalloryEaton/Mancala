@@ -29,6 +29,7 @@ namespace Mancala
         bool isPlayer1Turn = true;
         bool preventClick = false;
         bool gameOverAnimationHasOccurred = true;
+        bool isLoadedGame = false;
 
         #region Marbles
         Marble marble1 = new Marble(1);
@@ -121,6 +122,79 @@ namespace Mancala
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             var localSettings = ApplicationData.Current.LocalSettings;
+
+            // Restore the state of the grid
+            string s = localSettings.Values["KirbalaSaveState"] as string;
+            if (s != null && s!= "")
+            {
+                // Access data in value
+                InitializeCups();
+                InitializeMancala();
+                InitializeMarble();
+
+                // save player turn
+                if (s[0] == 'T')
+                {
+                    isPlayer1Turn = true;
+                    playerTurntxtbx.Text = "Player One";
+                }
+                else if (s[0] == 'F')
+                {
+                    isPlayer1Turn = false;
+                    playerTurntxtbx.Text = "Player Two";
+                }
+
+                // remove character
+                s = s.Substring(2);
+                string tempS = "";
+
+                // load the board
+                for (int i = 0; i < 14 && s.Length > 0; i++)
+                {
+                    tempS = s.Substring(0, s.IndexOf("."));
+                    cups[i].marbleCount = Convert.ToInt16(tempS);
+                    s = s.Substring(s.IndexOf(".") + 1);
+                }
+
+
+                //PlaceMarblesOnBoard
+                int marbleToPlace = 0;
+                for (int i = 0; i < 14; i++)
+                {
+                    if (i == 6 || i == 13)
+                    {
+                        for (int j = 0; j < cups[i].marbleCount; j++)
+                        {
+                            MancalaCup m = (MancalaCup)cups[i]; 
+                            Canvas.SetTop(marbles[marbleToPlace].ellipse, m.mancalaCoordinates[j].Y);
+                            Canvas.SetLeft(marbles[marbleToPlace].ellipse, m.mancalaCoordinates[j].X);
+                            marbleToPlace++;
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < cups[i].marbleCount; j++)
+                        {
+                            Canvas.SetTop(marbles[marbleToPlace].ellipse, cups[i].coordinates[j].Y);
+                            Canvas.SetLeft(marbles[marbleToPlace].ellipse, cups[i].coordinates[j].X);
+                            marbleToPlace++;
+                        }
+                    }
+                }
+
+                // placeMarblesInCup
+                marbleToPlace = 0;
+                for (int i = 0; i < 14; i++)
+                {
+                    for (int j = 0; j < cups[i].marbleCount; j++)
+                    {
+                        cups[i].marbles.Push(marbles[marbleToPlace]);
+                        marbleToPlace++;
+                    }
+                }
+                isLoadedGame = true;
+            }
+            
         }
 
         /// <summary>
@@ -133,7 +207,17 @@ namespace Mancala
         /// serializable state.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-
+            SaveState s = new SaveState(cups, isPlayer1Turn);
+            var localSettings = ApplicationData.Current.LocalSettings;
+            if (gameOverAnimationHasOccurred)
+            {
+                localSettings.Values["KirbalaSaveState"] = s.boardSaveConfig;
+            }
+            else
+            {
+                localSettings.Values["KirbalaSaveState"] = "";
+            }
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) 
@@ -155,7 +239,10 @@ namespace Mancala
             this.Loaded += (sender, e) =>
             {
                 //have something for loading saved state
-                InitializeBoard();
+                if (!isLoadedGame)
+                {
+                    InitializeBoard();
+                }
             };
         }
 
@@ -1258,6 +1345,7 @@ namespace Mancala
             //reset player turn and text
             isPlayer1Turn = true;
             playerTurntxtbx.Text = "Player One";
+            gameOverAnimationHasOccurred = false;
         }
 
        
