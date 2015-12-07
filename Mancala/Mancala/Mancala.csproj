@@ -140,11 +140,15 @@
     <None Include="Mancala_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\add.png" />
     <Content Include="Assets\black.png" />
     <Content Include="Assets\board set up.png" />
     <Content Include="Assets\body.jpg" />
     <Content Include="Assets\bodyMenu.png" />
     <Content Include="Assets\homeBtn.png" />
+    <Content Include="Assets\katKirby-150.png" />
+    <Content Include="Assets\katKirby-30.png" />
+    <Content Include="Assets\katKirby-50.png" />
     <Content Include="Assets\kirbyFacingDownward.png" />
     <Content Include="Assets\kirbyFacingUpward.png" />
     <Content Include="Assets\Logo.scale-100.png" />

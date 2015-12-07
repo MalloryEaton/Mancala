@@ -6,7 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" >
-
+    <Page.BottomAppBar>
+        <AppBar>
+            <AppBarButton Label="New Game" Click="newGameBtn_Click" Name="newGameBtn">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/add.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </AppBar>
+    </Page.BottomAppBar>
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/bodyMenu.png"/>
