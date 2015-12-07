@@ -21,14 +21,17 @@ namespace Mancala
             ellipse.Height = 20;
 
             // randomize elipse color
-            SolidColorBrush[] brushArray = new SolidColorBrush[5];
-            brushArray[0] = new SolidColorBrush(Colors.Aquamarine);
-            brushArray[1] = new SolidColorBrush(Colors.LightGreen);
-            brushArray[2] = new SolidColorBrush(Colors.CornflowerBlue);
+            SolidColorBrush[] brushArray = new SolidColorBrush[8];
+            brushArray[0] = new SolidColorBrush(Colors.Aqua);
+            brushArray[1] = new SolidColorBrush(Colors.Chartreuse);
+            brushArray[2] = new SolidColorBrush(Colors.MidnightBlue);
             brushArray[3] = new SolidColorBrush(Colors.MediumPurple);
-            brushArray[4] = new SolidColorBrush(Colors.AntiqueWhite);
-            
-            ellipse.Fill = brushArray[new Random((int)DateTime.Now.Ticks & MarbleNumber).Next(0,5)];
+            brushArray[4] = new SolidColorBrush(Colors.Snow);
+            brushArray[5] = new SolidColorBrush(Colors.Yellow);
+            brushArray[6] = new SolidColorBrush(Colors.DarkOrange);
+            brushArray[7] = new SolidColorBrush(Colors.Crimson);
+
+            ellipse.Fill = brushArray[new Random((int)DateTime.Now.Ticks & MarbleNumber).Next(0,8)];
             ellipse.Stroke = new SolidColorBrush(Colors.Black);
         }
     }

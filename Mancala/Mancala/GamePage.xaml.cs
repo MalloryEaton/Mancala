@@ -125,6 +125,23 @@ namespace Mancala
 
         private void InitializeCups()
         {
+            // add cups to list to enumerate through later.
+            cups.Add(cup0);
+            cups.Add(cup1);
+            cups.Add(cup2);
+            cups.Add(cup3);
+            cups.Add(cup4);
+            cups.Add(cup5);
+            cups.Add(mancala1);
+            cups.Add(cup7);
+            cups.Add(cup8);
+            cups.Add(cup9);
+            cups.Add(cup10);
+            cups.Add(cup11);
+            cups.Add(cup12);
+            cups.Add(mancala2);
+
+
             // initilize cupNumber
             cup0.cupNumber = 0;
             cup1.cupNumber = 1;
@@ -166,6 +183,7 @@ namespace Mancala
             cup10.coordinates[16].Y = Canvas.GetTop(Cup10);
             cup11.coordinates[16].Y = Canvas.GetTop(Cup11);
             cup12.coordinates[16].Y = Canvas.GetTop(Cup12);
+            
 
             // initialize the rest of the Coordinates of Cups
             PopulateCupCoordinateGrid(cup0.coordinates);
@@ -181,21 +199,6 @@ namespace Mancala
             PopulateCupCoordinateGrid(cup11.coordinates);
             PopulateCupCoordinateGrid(cup12.coordinates);
 
-            // add cups to list to enumerate through later.
-            cups.Add(cup0);
-            cups.Add(cup1);
-            cups.Add(cup2);
-            cups.Add(cup3);
-            cups.Add(cup4);
-            cups.Add(cup5);
-            cups.Add(mancala1);
-            cups.Add(cup7);
-            cups.Add(cup8);
-            cups.Add(cup9);
-            cups.Add(cup10);
-            cups.Add(cup11);
-            cups.Add(cup12);
-            cups.Add(mancala2);
         }
 
         private void PopulateCupCoordinateGrid(Coordinate[] coordinates)
@@ -1198,11 +1201,16 @@ namespace Mancala
                 cups[i].marbleCount = 0;
                 cups[i].marbles.Clear();
             }
+
             // add all to cups again in right order (1 - 48)
             PlaceMarblesInCup();
 
             // repopulate them in the right position
             PlaceMarblesOnBoard();
+
+            //reset player turn and text
+            isPlayer1Turn = true;
+            playerTurntxtbx.Text = "Player One";
         }
     }
 

@@ -44,11 +44,6 @@ namespace Mancala
         {
             this.Frame.Navigate(typeof(GamePage));
         }
-
-        private void LoadGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            // load all the things first
-            this.Frame.Navigate(typeof(GamePage));
-        }
+        
     }
 }

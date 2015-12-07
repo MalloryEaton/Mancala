@@ -10,7 +10,7 @@
         <AppBar>
             <AppBarButton Label="New Game" Click="newGameBtn_Click" Name="newGameBtn">
                 <AppBarButton.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/add.png"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/refresh.png"/>
                 </AppBarButton.Icon>
             </AppBarButton>
         </AppBar>
