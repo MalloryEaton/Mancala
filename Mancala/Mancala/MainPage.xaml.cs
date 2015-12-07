@@ -26,6 +26,8 @@ namespace Mancala
         public MainPage()
         {
             this.InitializeComponent();
+            // check to see if there's anything to load
+            // LoadGameButton.IsEnabled = false; // to disable btn
         }
         
         private void InstructionsButton_Click(object sender, RoutedEventArgs e)
@@ -33,52 +35,20 @@ namespace Mancala
             this.Frame.Navigate(typeof(InstructionsPage));
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            //if saved data, show message and let user choose
-            //if()
-            //{
-
-            //}
-            //else
-            //{
-
-            //}
-
-            MessageDialog msgDialog = new MessageDialog("Your message", "Your title");
-
-            //New Game Button
-            UICommand newGameBtn = new UICommand("New Game");
-            newGameBtn.Invoked = NewGameBtnClick;
-            msgDialog.Commands.Add(newGameBtn);
-
-            //Load Game Button
-            UICommand loadGameBtn = new UICommand("Load Game");
-            loadGameBtn.Invoked = LoadGameBtnClick;
-            msgDialog.Commands.Add(loadGameBtn);
-
-            //Cancel Button
-            UICommand cancelBtn = new UICommand("Cancel");
-            cancelBtn.Invoked = CancelBtnClick;
-            msgDialog.Commands.Add(cancelBtn);
-
-            //Show message
-            var result = msgDialog.ShowAsync();
+            this.Frame.Navigate(typeof(AboutPage));
         }
 
-        private void NewGameBtnClick(IUICommand command)
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(GamePage));
         }
 
-        private void LoadGameBtnClick(IUICommand command)
+        private void LoadGameButton_Click(object sender, RoutedEventArgs e)
         {
-            //if saved data, load game
-        }
-
-        private void CancelBtnClick(IUICommand command)
-        {
-            //closes message dialog
+            // load all the things first
+            this.Frame.Navigate(typeof(GamePage));
         }
     }
 }

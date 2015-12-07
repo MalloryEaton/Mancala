@@ -21,7 +21,7 @@ namespace Mancala
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class InstructionsPage : Page
+    public sealed partial class AboutPage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace Mancala
         }
 
 
-        public InstructionsPage()
+        public AboutPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -102,10 +102,5 @@ namespace Mancala
         }
 
         #endregion
-
-        private void forwardButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(InstructionsPage2));
-        }
     }
 }

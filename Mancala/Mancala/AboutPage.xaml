@@ -1,6 +1,6 @@
 ﻿<Page
     x:Name="pageRoot"
-    x:Class="Mancala.InstructionsPage"
+    x:Class="Mancala.AboutPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,7 +12,7 @@
 
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">Instructions</x:String>
+        <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
     <!--
@@ -20,7 +20,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid>
+    <Grid >
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/bodyMenu.png"/>
         </Grid.Background>
@@ -34,11 +34,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!--<Image Source="Assets/black.png" Margin="-4,-5,0,-4" Grid.RowSpan="2" Stretch="Fill" Opacity="0.6"></Image>-->
         <!-- Back button and page title -->
         <Grid>
-            <Grid.Background>
-                <ImageBrush Stretch="Fill"/>
-            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -49,30 +47,8 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <Button x:Name="forwardButton" Margin="908,25,-900,0" 
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Forward"
-                        AutomationProperties.AutomationId="ForwardButton"
-                        AutomationProperties.ItemType="Navigation Button" Height="113" RenderTransformOrigin="0.5,0.5" Width="112" Click="forwardButton_Click">
-                <Button.RenderTransform>
-                    <CompositeTransform ScaleX="-1"/>
-                </Button.RenderTransform>
-            </Button>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="About" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <TextBlock x:Name="BoardLayoutTitle" FontSize="30" HorizontalAlignment="Left" Margin="71,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Board Layout" VerticalAlignment="Top" Height="40" Width="221"/>
-        <Image Source="Assets/board set up.png" Margin="-10,327,17,72" Grid.Row="1"/>
-        <TextBlock x:Name="BoardLayoutText" FontSize="25" HorizontalAlignment="Left" Margin="113,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="199" Width="881">
-        	<Run Text="- There are seven cups per player, differentiated by color"/>
-            <LineBreak/>
-        	<LineBreak/>
-        	<Run Text="- The smaller six cups are for gameplay"/>
-            <LineBreak/>
-            <LineBreak/>
-        	<Run Text="- The larger cup is your goal or Mancala, get as many marbles in here as you can"/>
-        </TextBlock>
-        
     </Grid>
 </Page>

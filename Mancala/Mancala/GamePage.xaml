@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/body.jpg"/>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/bodyMenu.png"/>
         </Grid.Background>
         <Image x:Name="image" HorizontalAlignment="Left" Height="614" Margin="-60,124,-60,0" VerticalAlignment="Top" Width="1144" Source="Assets/mancalaBoard.png"/>
 
