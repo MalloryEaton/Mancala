@@ -8,16 +8,21 @@
     mc:Ignorable="d" >
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton Label="Home" Click="navHomeBtn_Click"  Name="navHomeBtn">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/back.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Instructions" Click="instructionsBtn_Click"  Name="instructionsBtn">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/questionmark.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton Label="New Game" Click="newGameBtn_Click" Name="newGameBtn">
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/refresh.png"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <!--<AppBarButton Label="Load Game" Click="loadGameBtn_Click" Name="loadGameBtn">
-                <AppBarButton.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/folder.png"/>
-                </AppBarButton.Icon>
-            </AppBarButton>-->
         </CommandBar>
     </Page.BottomAppBar>
     <Grid>

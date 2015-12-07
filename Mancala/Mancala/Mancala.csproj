@@ -108,6 +108,7 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AnimationInformation.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -141,6 +142,7 @@
     <None Include="Mancala_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\back.png" />
     <Content Include="Assets\black.png" />
     <Content Include="Assets\board set up.png" />
     <Content Include="Assets\body.jpg" />
@@ -155,6 +157,7 @@
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\mancalaBoard.png" />
     <Content Include="Assets\MancalaTitle.png" />
+    <Content Include="Assets\questionmark.png" />
     <Content Include="Assets\refresh.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

@@ -247,6 +247,7 @@ namespace Mancala
         }
 
         #region Functions for Board Initialization
+
         private void InitializeBoard()
         {
             InitializeCups();
@@ -1348,23 +1349,15 @@ namespace Mancala
             gameOverAnimationHasOccurred = false;
         }
 
-       
-    }
-
-    struct AnimationInformation
-    {
-        public Marble marbleToMove;
-        public Coordinate toCoordinate;
-        public Coordinate fromCoordinate;
-        public AnimationInformation(Marble marble, double toX, double toY, double fromX, double fromY)
+        private void navHomeBtn_Click(object sender, RoutedEventArgs e)
         {
-            marbleToMove = marble;
-            toCoordinate = new Coordinate();
-            toCoordinate.X = toX;
-            toCoordinate.Y = toY;
-            fromCoordinate = new Coordinate();
-            fromCoordinate.X = fromX;
-            fromCoordinate.Y = fromY;
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void instructionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(InstructionsPage));
         }
     }
+    
 }
