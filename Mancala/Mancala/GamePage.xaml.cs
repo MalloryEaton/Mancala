@@ -1357,6 +1357,16 @@ namespace Mancala
         private void instructionsBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(InstructionsPage));
+            SaveState s = new SaveState(cups, isPlayer1Turn);
+            var localSettings = ApplicationData.Current.LocalSettings;
+            if (gameOverAnimationHasOccurred)
+            {
+                localSettings.Values["KirbalaSaveState"] = s.boardSaveConfig;
+            }
+            else
+            {
+                localSettings.Values["KirbalaSaveState"] = "";
+            }
         }
     }
     
